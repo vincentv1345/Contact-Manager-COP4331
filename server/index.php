@@ -23,6 +23,34 @@
                     //contacts/:id  route
                     if(isset($uri[3])){
 
+                        switch ($method) {
+                            case "GET":
+                                //getMany("contacts", $body);
+                                echo "Get many contacts";
+                                break;
+
+                            case "POST":
+                                //new("contacts", $body);
+                                echo "Post new contact";
+                                break;
+
+                            case "PATCH":
+                                //update("contacts", $body);
+                                echo "Update contact";
+                                break;
+
+                            case "DELETE":
+                                //delete("contacts", $body);
+                                echo "delete contact";
+                                break;
+
+                            default:
+                                header("HTTP/1.1 500 Server Error");
+                                echo 
+                                    "Invalid request method " . $method . 
+                                    "\n Only GET, POST, PATCH, and DELETE methods are allowed for this route";
+                                break;
+                        }
                     }
             
                     //contacts/  route
@@ -45,7 +73,7 @@
 
                         else{
                             header("HTTP/1.1 500 Server Error");
-                            echo "Invalid request method " . $method . "\n Only GET method allow for this route";
+                            echo "Invalid request method " . $method . "\n Only GET method is allowed for this route";
                         }
                     }
                 }
