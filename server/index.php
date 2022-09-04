@@ -19,7 +19,35 @@
         
                 //contact route
                 else if($uri[2] === "contacts"){
-                    echo "This is the contacts end point";
+
+                    //contacts/:id  route
+                    if(isset($uri[3])){
+
+                    }
+            
+                    //contacts/  route
+                    else{
+                        
+                        //The method only should be contact
+                        if($method === "GET"){
+
+                            //Get id from request body
+                            if(isset($body['id']) && is_numeric($body['id'])){
+                                //getAll(contacts, $body['id']);
+                                echo "get all contacts";
+                            }
+
+                            else{
+                                header("HTTP/1.1 500 Server Error");
+                                echo "Invalid request body \n 'id' in body required";
+                            }
+                        }
+
+                        else{
+                            header("HTTP/1.1 500 Server Error");
+                            echo "Invalid request method " . $method . "\n Only GET method allow for this route";
+                        }
+                    }
                 }
                 
                 //throw error for invalid routes
