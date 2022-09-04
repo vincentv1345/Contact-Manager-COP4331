@@ -2,11 +2,17 @@
         //This gets the uri routes into an array
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $uri = explode( '/', $uri );
-    
+
+        //This gets the method type. Ex: GET, POST, DELETE, etc..
+        $method = $_SERVER['REQUEST_METHOD'];
+
+        //This gets the request body
+        $body =  file_get_contents('php://input');
+
         //validate the correct routs for this api
         if (isset($uri[1]) && $uri[1] === "index.php" && isset($uri[2])){
 
-                //useers route
+                //users route
                 if($uri[2] === "users"){
                     echo "This is the users end point";
                 }
