@@ -1,4 +1,7 @@
 <?php
+        //import controllers
+        ['getAll' => $getAll] = require './controllers/index.php';
+
         //This gets the uri routes into an array
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $uri = explode( '/', $uri );
@@ -8,6 +11,9 @@
 
         //This gets the request body
         $body =  file_get_contents('php://input');
+
+        //This gets all queries from the url
+        $queries = $_SERVER['QUERY_STRING'];
 
         //validate the correct routs for this api
         if (isset($uri[1]) && $uri[1] === "index.php" && isset($uri[2])){
@@ -58,17 +64,7 @@
                         
                         //The method only should be contact
                         if($method === "GET"){
-
-                            //Get id from request body
-                            if(isset($body['id']) && is_numeric($body['id'])){
-                                //getAll(contacts, $body['id']);
-                                echo "get all contacts";
-                            }
-
-                            else{
-                                header("HTTP/1.1 500 Server Error");
-                                echo "Invalid request body \n 'id' in body required";
-                            }
+                            $getAll('contacts', $body, $queries);
                         }
 
                         else{
