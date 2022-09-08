@@ -1,8 +1,6 @@
 <?php
         //import controllers
-        echo 'before';
         require_once './controllers/controllers.php';
-        echo 'after';
 
         //connect to db
         $serverName = "localhost";

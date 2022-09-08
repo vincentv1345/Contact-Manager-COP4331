@@ -1,11 +1,6 @@
 <?php
-    echo 'before again';
-    try {
-        require_once "/var/www/html/models/contact.php";
-    } catch (\Throwable $th) {
-        echo $th;
-    }
-    echo 'after again';
+    //import models
+    require_once "/var/www/html/models/contact.php";
 
     function getAll(string $route, $body, string $query, $db) {
 
