@@ -1,6 +1,7 @@
 <?php
-
+    echo 'before again';
     require_once "../models/contact.php";
+    echo 'after again';
 
     function getAll(string $route, $body, string $query, $db) {
 
