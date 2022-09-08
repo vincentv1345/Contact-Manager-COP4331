@@ -1,5 +1,7 @@
 <?php
 
+    require_once "../models/contact.php";
+
     function getAll(string $route, $body, string $query, $db) {
 
         //Validate id from request body
@@ -12,7 +14,7 @@
             if (mysqli_num_rows($result) > 0) {
 
                 while($row = mysqli_fetch_assoc($result)) {
-                    array_push($response, '{"FirstName": ' . '"' . $row["FirstName"] . '"' . ', "LastName": ' . '"' . $row["LastName"] . '"' . ',"Email": ' . '"' . $row["Email"] . '"' . ', "Phone": ' . '"' . $row["Phone"] . '"' . ', "Address": ' . '"' . $row["Address"] . '"' . ', "Status": ' . '"' . $row["Status"] . '"' . '}');
+                    array_push($response, getContactModel($row["FirstName"], $row["LastName"], $row["Email"], $row["Phone"], $row["Address"], $row["Status"]));
                 }
                 echo json_encode($response);
             } 
