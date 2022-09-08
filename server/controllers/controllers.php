@@ -38,10 +38,10 @@
     }
     function getMany(string $route, string $id, $db) {
 
-        if(!is_numeric($id)){
-            header("HTTP/1.1 500 Server Error");
-            echo "Invalid request body \n 'id' in body required and it has to be an integer";
-        }
+        // if(!is_numeric($id)){
+        //     header("HTTP/1.1 500 Server Error");
+        //     echo "Invalid request body \n 'id' in body required and it has to be an integer";
+        // }
         $DBquery = "Select * from ". $route . " where FirstName = " . $id . ";";
         $result = mysqli_query($db, $DBquery);
         $response = array($result);
