@@ -3,8 +3,8 @@
        require_once './controllers/controllers.php';
 
        $serverName = "localhost";
-       $username = "root";
-       $password = "abc123W(k";
+       $username = "phpConnection";
+       $password = "123456";
        $db = 'COP4331GR16';
        try {
         $conn=new mysqli($serverName,$username,$password,$db);
