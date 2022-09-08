@@ -1,6 +1,6 @@
 <?php
 
-    function getAll(string $route, string $body, string $query) {
+    function getAll(string $route, string $body, string $query, $db) {
 
         //Get id from request body
         if(isset($body['id']) && is_numeric($body['id'])){
@@ -13,7 +13,7 @@
             echo "Invalid request body \n 'id' in body required";
         }
     }
-    function getMany(string $route, string $id) {
+    function getMany(string $route, string $id, $db) {
 
         if(!is_numeric($id)){
             //query
@@ -21,13 +21,13 @@
         echo "get many or a single " . $route;
 
     }
-    function create(string $route, string $id, string $body){
+    function create(string $route, string $id, string $body, $db){
 
     }
-    function delete(string $route, string $id){
+    function delete(string $route, string $id, $db){
 
     }
-    function update(string $route, string $id, string $body){
+    function update(string $route, string $id, string $body, $db){
         
     }
 

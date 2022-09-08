@@ -1,25 +1,18 @@
 <?php
         //import controllers
-       require_once './controllers/controllers.php';
+        require_once './controllers/controllers.php';
 
-       $serverName = "localhost";
-       $username = "phpConnection";
-       $password = "123456";
-       $db = 'COP4331GR16';
-       try {
-        $conn=new mysqli($serverName,$username,$password,$db);
+        //connect to db
+        $serverName = "localhost";
+        $username = "phpConnection";
+        $password = "123456";
+        $db = 'COP4331GR16';
+        $conn = new mysqli($serverName, $username, $password, $db);
 
-        if($conn)
-        {
-            echo "Connection Successful";
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
         }
-        else
-        {
-            echo "Could not connect";
-        }
-       } catch (\Throwable $th) {
-        echo 'did not work';
-       }
 
         //This gets the uri routes into an array
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -41,19 +34,19 @@
                     if(isset($uri[3])){
                         switch ($method) {
                             case "GET":
-                                getMany("contacts", $uri[3]);
+                                getMany("contacts", $uri[3], $conn);
                                 break;
 
                             case "POST":
-                                create("contacts", $uri[3], $body);
+                                create("contacts", $uri[3], $body, $db);
                                 break;
 
                             case "PATCH":
-                                update("contacts", $uri[3], $body);
+                                update("contacts", $uri[3], $body, $db);
                                 break;
 
                             case "DELETE":
-                                delete("contacts", $uri[3]);
+                                delete("contacts", $uri[3], $db);
                                 break;
 
                             default:
@@ -109,7 +102,7 @@
                         
                         //The method only should be contact
                         if($method === "GET"){
-                            $getAll('contacts', $body, $queries);
+                            $getAll('contacts', $body, $queries, $db);
                         }
 
                         else{
