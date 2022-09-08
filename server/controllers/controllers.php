@@ -33,15 +33,21 @@
 
         else{
             header("HTTP/1.1 500 Server Error");
-            echo "Invalid request body \n 'id' in body required";
+            echo "Invalid request body \n 'id' in body required and it has to be an integer";
         }
     }
     function getMany(string $route, string $id, $db) {
 
         if(!is_numeric($id)){
-            //query
+            header("HTTP/1.1 500 Server Error");
+            echo "Invalid request body \n 'id' in body required and it has to be an integer";
         }
-        echo "get many or a single " . $route;
+        $DBquery = "Select * from ". $route . " where userID = " . $id . ";";
+        $result = mysqli_query($db, $DBquery);
+        $response = array($result);
+
+        echo json_encode($response);
+
 
     }
     function create(string $route, string $id, string $body, $db){

@@ -69,7 +69,7 @@
 
                         switch ($method) {
                             case "GET":
-                                //getMany("contacts", $body);
+                                getMany("contacts", $uri["id"], $conn);
                                 echo "Get many contacts";
                                 break;
 
