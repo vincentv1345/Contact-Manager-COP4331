@@ -102,7 +102,9 @@
                         
                         //The method only should be contact
                         if($method === "GET"){
+                            echo "before getAll";
                             $getAll('contacts', $body, $queries, $db);
+                            echo "after";
                         }
 
                         else{
