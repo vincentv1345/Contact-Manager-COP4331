@@ -2,13 +2,11 @@
 
     function getAll(string $route, string $body, string $query, $db) {
 
-        //Get id from request body
-        echo '1';
+        //Validate id from request body
+        print_r($body);
         if(isset($body['id']) && is_numeric($body['id'])){
-            echo '2';
             
             $DBquery = "Select * from ". $route . " where userID = " . $body['id'] . ";";
-            echo '3';
             $result = mysqli_query($db, $DBquery);
             $response = array();
 
