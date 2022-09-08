@@ -3,12 +3,13 @@
     function getAll(string $route, string $body, string $query, $db) {
 
         //Get id from request body
+        echo '1';
         if(isset($body['id']) && is_numeric($body['id'])){
+            echo '2';
             
-            $query = "Select * from ". $route . " where userID = " . $body['id'] . ";";
-            echo 'before';
-            $result = mysqli_query($db, $query);
-            echo 'after';
+            $DBquery = "Select * from ". $route . " where userID = " . $body['id'] . ";";
+            echo '3';
+            $result = mysqli_query($db, $DBquery);
             $response = array();
 
             if (mysqli_num_rows($result) > 0) {
