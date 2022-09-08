@@ -3,34 +3,21 @@
     function getAll(string $route, $body, string $query, $db) {
 
         //Validate id from request body
-        echo "1";
         if(isset($body->id) && is_numeric($body->id)){
-            echo "2";
-            $DBquery = "Select * from ". $route . " where userID = " . $body->id . ";";
-            echo "3";
-            $result = mysqli_query($db, $DBquery);
-            echo "4";
 
+            $DBquery = "Select * from ". $route . " where userID = " . $body->id . ";";
+            $result = mysqli_query($db, $DBquery);
             $response = array();
-            echo "5";
 
             if (mysqli_num_rows($result) > 0) {
-                echo "6";
 
                 while($row = mysqli_fetch_assoc($result)) {
-                    echo "7";
-                    array_push($response, "FirstName: " . $row["FirstName"] . ", 
-                                        LastName: " . $row["LastName"] . ",
-                                        Email: " . $row["Email"] . ", 
-                                        Phone: " . $row["Phone"] . ", 
-                                        Address: " . $row["Address"] . ", 
-                                        Status: " . $row["Status"]);
+                    array_push($response, "{FirstName: " . $row["FirstName"] . ", LastName: " . $row["LastName"] . ",Email: " . $row["Email"] . ", Phone: " . $row["Phone"] . ", Address: " . $row["Address"] . ", Status: " . $row["Status"] . "}");
                 }
-                echo "8";
                 echo json_encode($response);
             } 
             else {
-                echo "0 results";
+                echo json_encode("0 results");
             }
         }
 
