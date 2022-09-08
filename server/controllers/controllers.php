@@ -1,9 +1,10 @@
 <?php
 
-    $servername = "http://159.223.173.36/";
+    $serverName = "http://159.223.173.36/";
     $username = "root";
     $password = "abc123W(k";
-    $conn = new mysqli($servername, $username, $password);
+    $db = 'COP4331GR16';
+    $conn = new mysqli($serverName, $username, $password, $db);
 
     // Check connection
     if ($conn->connect_error) {
