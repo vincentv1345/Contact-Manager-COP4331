@@ -23,7 +23,6 @@
         }
     }
 
-
     function getAll(string $route, $body, string $query, $db) {
 
         //Validate id from request body
@@ -56,7 +55,28 @@
 
     }
     function create(string $route, string $id, string $body, $db){
+        if(!is_numeric($id)){
+            header("HTTP/1.1 500 Server Error");
+            echo "Invalid request body \n 'id' in body required and it has to be an integer";
+        }
 
+        if($route === "users" ){
+            if (isset($FirstName) && isset($LastName) && isset($Login) && isset($Password)) {
+                $DBquery = "insert into Users (FirstName,LastName,Login,Password) VALUES ('".$FirstName ."','". $LastName . "','" . $Login . "','" . $Password . "');";
+                $result = mysqli_query($db, $DBquery);
+                $response = array();
+
+                sendResponse($response, $result, $route);
+            }
+            else{
+                header("HTTP/1.1 500 Server Error");
+                echo "Invalid request body \n";
+            }
+        }
+
+        else{
+
+        }
     }
     function delete(string $route, string $id, $db){
 
