@@ -1,6 +1,6 @@
 <?php
 
-    function getAll(string $route, string $body, string $query, $db) {
+    function getAll(string $route, $body, string $query, $db) {
 
         //Validate id from request body
         echo "1";
