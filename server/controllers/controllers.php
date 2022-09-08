@@ -12,7 +12,7 @@
             if (mysqli_num_rows($result) > 0) {
 
                 while($row = mysqli_fetch_assoc($result)) {
-                    array_push($response, '{"FirstName": ' . $row["FirstName"] . ', "LastName": ' . $row["LastName"] . ',"Email": ' . $row["Email"] . ', "Phone": ' . $row["Phone"] . ', "Address": ' . $row["Address"] . ', "Status": ' . $row["Status"] . '}');
+                    array_push($response, '{"FirstName": ' . '"' . $row["FirstName"] . '"' . ', "LastName": ' . '"' . $row["LastName"] . '"' . ',"Email": ' . '"' . $row["Email"] . '"' . ', "Phone": ' . '"' . $row["Phone"] . '"' . ', "Address": ' . '"' . $row["Address"] . '"' . ', "Status": ' . '"' . $row["Status"] . '"' . '}');
                 }
                 echo json_encode($response);
             } 
