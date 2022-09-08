@@ -1,17 +1,5 @@
 <?php
 
-    $serverName = "http://159.223.173.36/";
-    $username = "root";
-    $password = "abc123W(k";
-    $db = 'COP4331GR16';
-    $conn = new mysqli($serverName, $username, $password, $db);
-
-    // Check connection
-    if ($conn->connect_error) {
-        echo("Connection failed: " . $conn->connect_error);
-    }
-    echo "Connected successfully";
-
     function getAll(string $route, string $body, string $query) {
 
         //Get id from request body
