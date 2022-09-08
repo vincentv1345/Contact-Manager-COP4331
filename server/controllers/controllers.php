@@ -4,6 +4,8 @@
 
         //Validate id from request body
         print_r($body);
+        print_r($body['id']);
+        print_r($body['id']);
         if(isset($body['id']) && is_numeric($body['id'])){
             
             $DBquery = "Select * from ". $route . " where userID = " . $body['id'] . ";";
