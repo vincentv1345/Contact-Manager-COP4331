@@ -1,5 +1,16 @@
 <?php
 
+    $servername = "localhost";
+    $username = "root";
+    $password = "abc123W(k";
+    $conn = new mysqli($servername, $username, $password);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    echo "Connected successfully";
+
     function getAll(string $route, string $body, string $query) {
 
         //Get id from request body
@@ -21,13 +32,13 @@
         echo "get many or a single " . $route;
 
     }
-    function new(){
+    function create(string $route, string $id, string $body){
 
     }
-    function delete(){
+    function delete(string $route, string $id){
 
     }
-    function update(){
+    function update(string $route, string $id, string $body){
         
     }
 

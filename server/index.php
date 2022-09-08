@@ -26,7 +26,7 @@
                                 break;
 
                             case "POST":
-                                new("contacts", $uri[3], $body);
+                                create("contacts", $uri[3], $body);
                                 break;
 
                             case "PATCH":
