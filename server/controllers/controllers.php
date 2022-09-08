@@ -3,9 +3,6 @@
     function getAll(string $route, string $body, string $query, $db) {
 
         //Validate id from request body
-        print_r($body);
-        print_r(isset($body["id"]));
-        print_r(is_numeric($body["id"]));
         if(isset($body["id"]) && is_numeric($body["id"])){
             
             $DBquery = "Select * from ". $route . " where userID = " . $body["id"] . ";";

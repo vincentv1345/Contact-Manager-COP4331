@@ -22,7 +22,7 @@
         $method = $_SERVER['REQUEST_METHOD'];
 
         //This gets the request body
-        $body =  file_get_contents('php://input');
+        $body =  json_decode(file_get_contents('php://input'));
 
         //This gets all queries from the url
         $queries = $_SERVER['QUERY_STRING'];
@@ -102,12 +102,7 @@
                         
                         //The method only should be contact
                         if($method === "GET"){
-                            try {
-                                getAll('contacts', $body, $queries, $db);
-                            
-                            } catch (\Throwable $th) {
-                                echo $th;
-                            }
+                            getAll('contacts', $body, $queries, $db);
                         }
 
                         else{
