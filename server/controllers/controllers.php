@@ -6,7 +6,9 @@
         if(isset($body['id']) && is_numeric($body['id'])){
             
             $query = "Select * from ". $route . " where userID = " . $body['id'] . ";";
+            echo 'before';
             $result = mysqli_query($db, $query);
+            echo 'after';
             $response = array();
 
             if (mysqli_num_rows($result) > 0) {
