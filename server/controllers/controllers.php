@@ -1,6 +1,7 @@
 <?php
     //import models
     require_once "/var/www/html/models/contact.php";
+    require_once "/var/www/html/models/user.php";
 
     function getAll(string $route, $body, string $query, $db) {
 
@@ -14,7 +15,14 @@
             if (mysqli_num_rows($result) > 0) {
 
                 while($row = mysqli_fetch_assoc($result)) {
-                    array_push($response, getContactModel($row["FirstName"], $row["LastName"], $row["Email"], $row["Phone"], $row["Address"], $row["Status"]));
+
+                    if($route === "Contacts"){
+                        array_push($response, getContactModel($row["FirstName"], $row["LastName"], $row["Email"], $row["Phone"], $row["Address"], $row["Status"]));
+                    }
+                    else{
+                        array_push($response, getUserModel($row["FirstName"], $row["LastName"], $row["Email"], $row["Phone"], $row["Address"], $row["Status"]));
+                    }
+
                 }
                 echo json_encode($response);
             } 
