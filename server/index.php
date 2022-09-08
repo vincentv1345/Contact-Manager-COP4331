@@ -2,7 +2,7 @@
         //import controllers
        require_once './controllers/controllers.php';
 
-       $serverName = "http://159.223.173.36/";
+       $serverName = "localhost";
        $username = "root";
        $password = "abc123W(k";
        $db = 'COP4331GR16';
