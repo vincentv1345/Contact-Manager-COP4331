@@ -7,7 +7,7 @@
        $password = "abc123W(k";
        $db = 'COP4331GR16';
        try {
-        $conn=mysqli_connect($serverName,$username,$password,$db);
+        $conn=new mysqli($serverName,$username,$password,$db);
 
         if($conn)
         {
