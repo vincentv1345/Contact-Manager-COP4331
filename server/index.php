@@ -34,19 +34,19 @@
                     if(isset($uri[3])){
                         switch ($method) {
                             case "GET":
-                                getMany("contacts", $uri[3], $conn);
+                                getMany("Users", $uri[3], $conn);
                                 break;
 
                             case "POST":
-                                create("contacts", $uri[3], $body, $conn);
+                                create("Users", $uri[3], $body, $conn);
                                 break;
 
                             case "PATCH":
-                                update("contacts", $uri[3], $body, $conn);
+                                update("Users", $uri[3], $body, $conn);
                                 break;
 
                             case "DELETE":
-                                delete("contacts", $uri[3], $conn);
+                                delete("Users", $uri[3], $conn);
                                 break;
 
                             default:
