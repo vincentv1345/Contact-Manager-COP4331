@@ -38,15 +38,15 @@
                                 break;
 
                             case "POST":
-                                create("contacts", $uri[3], $body, $db);
+                                create("contacts", $uri[3], $body, $conn);
                                 break;
 
                             case "PATCH":
-                                update("contacts", $uri[3], $body, $db);
+                                update("contacts", $uri[3], $body, $conn);
                                 break;
 
                             case "DELETE":
-                                delete("contacts", $uri[3], $db);
+                                delete("contacts", $uri[3], $conn);
                                 break;
 
                             default:
@@ -103,7 +103,7 @@
                         //The method only should be contact
                         if($method === "GET"){
                             try {
-                                getAll('contacts', $body, $queries, $db);
+                                getAll('contacts', $body, $queries, $conn);
                             } catch (\Throwable $th) {
                                 echo $th;
                             }
