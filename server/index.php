@@ -1,6 +1,6 @@
 <?php
         //import controllers
-        ['getAll' => $getAll] = require './controllers/index.php';
+        ['getAll' => $getAll] = require './controllers/controllers.php';
 
         //This gets the uri routes into an array
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
