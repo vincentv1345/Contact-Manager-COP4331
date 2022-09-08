@@ -20,7 +20,7 @@
                         array_push($response, getContactModel($row["FirstName"], $row["LastName"], $row["Email"], $row["Phone"], $row["Address"], $row["Status"]));
                     }
                     else{
-                        array_push($response, getUserModel($row["FirstName"], $row["LastName"], $row["Email"], $row["Phone"], $row["Address"], $row["Status"]));
+                        array_push($response, getUserModel($row["FirstName"], $row["LastName"], $row["Login"], $row["Password"]));
                     }
 
                 }
@@ -38,15 +38,31 @@
     }
     function getMany(string $route, string $id, $db) {
 
-        // if(!is_numeric($id)){
-        //     header("HTTP/1.1 500 Server Error");
-        //     echo "Invalid request body \n 'id' in body required and it has to be an integer";
-        // }
-        $DBquery = "Select * from ". $route . " where FirstName = " . $id . ";";
+        if(!is_numeric($id)){
+            header("HTTP/1.1 500 Server Error");
+            echo "Invalid request body \n 'id' in body required and it has to be an integer";
+        }
+        $DBquery = "Select * from ". $route . " where userID = " . $id . ";";
         $result = mysqli_query($db, $DBquery);
         $response = array($result);
 
-        echo json_encode($response);
+        if (mysqli_num_rows($result) > 0) {
+
+            while($row = mysqli_fetch_assoc($result)) {
+
+                if($route === "Contacts"){
+                    array_push($response, getContactModel($row["FirstName"], $row["LastName"], $row["Email"], $row["Phone"], $row["Address"], $row["Status"]));
+                }
+                else{
+                    array_push($response, getUserModel($row["FirstName"], $row["LastName"], $row["Login"], $row["Password"]));
+                }
+
+            }
+            echo json_encode($response);
+        } 
+        else {
+            echo json_encode("0 results");
+        }
 
 
     }
