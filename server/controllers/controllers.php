@@ -1,6 +1,10 @@
 <?php
     echo 'before again';
-    require_once "../models/contact.php";
+    try {
+        require_once "../models/contact.php";
+    } catch (\Throwable $th) {
+        echo $th;
+    }
     echo 'after again';
 
     function getAll(string $route, $body, string $query, $db) {
