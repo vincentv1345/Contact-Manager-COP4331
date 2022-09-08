@@ -1,7 +1,7 @@
 <?php
     echo 'before again';
     try {
-        require_once "../models/contact.php";
+        require_once "/var/www/html/models/contact.php";
     } catch (\Throwable $th) {
         echo $th;
     }
