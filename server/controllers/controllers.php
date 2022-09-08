@@ -44,7 +44,7 @@
         }
         $DBquery = "Select * from ". $route . " where userID = " . $id . ";";
         $result = mysqli_query($db, $DBquery);
-        $response = array($result);
+        $response = array();
 
         if (mysqli_num_rows($result) > 0) {
 
