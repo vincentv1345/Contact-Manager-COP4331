@@ -6,7 +6,8 @@
        $username = "root";
        $password = "abc123W(k";
        $db = 'COP4331GR16';
-       $conn=mysqli_connect($serverName,$username,$password,$db);
+       try {
+        $conn=mysqli_connect($serverName,$username,$password,$db);
 
         if($conn)
         {
@@ -16,6 +17,9 @@
         {
             echo "Could not connect";
         }
+       } catch (\Throwable $th) {
+        echo 'did not work';
+       }
 
         //This gets the uri routes into an array
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
