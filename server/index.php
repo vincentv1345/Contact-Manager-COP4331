@@ -6,13 +6,16 @@
        $username = "root";
        $password = "abc123W(k";
        $db = 'COP4331GR16';
-       $conn = new mysqli($serverName, $username, $password, $db);
-   
-       // Check connection
-       if ($conn->connect_error) {
-           echo("Connection failed: " . $conn->connect_error);
-       }
-       echo "Connected successfully";
+       $conn=mysqli_connect($serverName,$username,$password,$db);
+
+        if($conn)
+        {
+            echo "Connection Successful";
+        }
+        else
+        {
+            echo "Could not connect";
+        }
 
         //This gets the uri routes into an array
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
