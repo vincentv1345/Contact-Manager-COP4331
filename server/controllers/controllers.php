@@ -61,7 +61,7 @@
         }
 
         if($route === "users" ){
-            if (isset($FirstName) && isset($LastName) && isset($Login) && isset($Password)) {
+            if (isset($body["FirstName"]) && isset($body["LastName"]) && isset($Login) && isset($Password)) {
                 $DBquery = "insert into Users (FirstName,LastName,Login,Password) VALUES ('".$FirstName ."','". $LastName . "','" . $Login . "','" . $Password . "');";
                 $result = mysqli_query($db, $DBquery);
                 $response = array();
