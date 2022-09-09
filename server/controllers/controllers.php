@@ -47,7 +47,8 @@
             header("HTTP/1.1 500 Server Error");
             echo "Invalid request body \n 'id' in body required and it has to be an integer";
         }
-        $DBquery = "Select * from ". $route . " where userID = " . $id . ";";
+        $tableID = ($route === 'users') ? "userID" : "contactID";
+        $DBquery = "Select * from ". $route . " where " . $tableID . " = " . $id . ";";
         $result = mysqli_query($db, $DBquery);
         $response = array();
 
