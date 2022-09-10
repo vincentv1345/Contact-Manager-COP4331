@@ -65,11 +65,11 @@
                 else if($uri[2] === "contacts"){
 
                     //contacts/:id  route
-                    if(isset($uri[3])){
+                    if(isset($uri[3]) && $uri[3] !== ""){
 
                         switch ($method) {
                             case "GET":
-                                getMany("contacts", $uri[3], $conn);
+                                getMany("Contacts", $uri[3], $conn);
                                 echo "Get many contacts";
                                 break;
 
