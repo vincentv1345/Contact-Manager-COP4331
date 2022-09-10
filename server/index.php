@@ -34,7 +34,7 @@
                     if(isset($uri[3])){
                         switch ($method) {
                             case "GET":
-                                getMany("Users", $uri[3], $conn);
+                                getOne("Users", $uri[3], $conn, $body);
                                 break;
 
                             case "POST":
@@ -69,8 +69,7 @@
 
                         switch ($method) {
                             case "GET":
-                                getMany("Contacts", $uri[3], $conn);
-                                echo "Get many contacts";
+                                getOne("Contacts", $uri[3], $conn, $body);
                                 break;
 
                             case "POST":
