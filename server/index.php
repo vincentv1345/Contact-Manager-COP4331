@@ -31,10 +31,10 @@
         if (isset($uri[1]) && $uri[1] === "index.php" && isset($uri[2])){
                 //users route
                 if($uri[2] === "users"){
-                    if(isset($uri[3])){
+                    if(isset($uri[3]) && $uri[3] !== ""){
                         switch ($method) {
                             case "GET":
-                                getOne("Users", $uri[3], $conn, $body);
+                                getOne("Users", $uri[3], $body, $conn);
                                 break;
 
                             case "POST":
@@ -69,12 +69,11 @@
 
                         switch ($method) {
                             case "GET":
-                                getOne("Contacts", $uri[3], $conn, $body);
+                                getOne("Contacts", $uri[3], $body, $conn);
                                 break;
 
                             case "POST":
-                                //new("contacts", $body);
-                                echo "Post new contact";
+                                create("Contacts", $uri[3], $body, $conn);
                                 break;
 
                             case "PATCH":

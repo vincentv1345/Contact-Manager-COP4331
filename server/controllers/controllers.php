@@ -26,7 +26,7 @@
     function getAll(string $route, $body, string $query, $db) {
 
         //Validate id from request body
-        if(isset($body->id) && is_numeric($body->id)){
+        if(validate($body->id, "num")){
 
             $DBquery = "Select * from ". $route . " where userID = " . $body->id . ";";
             $result = mysqli_query($db, $DBquery);
@@ -41,14 +41,14 @@
             echo "Invalid request body \n 'id' in body required and it has to be an integer";
         }
     }
-    function getOne(string $route, string $id, $db, $body) {
+    function getOne(string $route, string $id, $body, $db) {
 
-        if(isset($id) && is_numeric($id)){
+        if(validate($id, "num")){
             
             $DBquery = "";
 
             if ($route === 'Contacts'){
-                if(isset($body->id) && is_numeric($body->id)){
+                if(validate($body->id, "num")){
                     $DBquery = "select * from ". $route . " where userID = " . $body->id . " and contactID = ". $id . ";";
                 }
                 else{
@@ -73,42 +73,51 @@
         }
 
     }
-    function create(string $route, string $id, string $body, $db){
-        if(!is_numeric($id)){
-            header("HTTP/1.1 500 Server Error");
-            echo "Invalid request body \n 'id' in body required and it has to be an integer";
-        }
+    function create(string $route, string $id, $body, $db){
 
-        if($route === "users" ){
-            if (isset($body["FirstName"]) && isset($body["LastName"]) && isset($body["Login"]) && isset($body["Password"])) {
-                $DBquery = "insert into Users (FirstName,LastName,Login,Password) VALUES ('".$body["FirstName"] ."','". $body["LastName"] . "','" . $body["Login"] . "','" . $body["Password"] . "');";
-                $result = mysqli_query($db, $DBquery);
-                $response = array();
+        if(validate($id, "num")){
+            $DBquery = "";
 
-                sendResponse($response, $result, $route);
+            if($route === "Users" ){
+
+                if (validate($body->FirstName, "str") && validate($body->LastName, "str") && validate($body->Login, "str") && validate($body->Password, "str")) {
+                    
+                    $DBquery = "insert into Users (FirstName,LastName,Login,Password) VALUES ('".$body->FirstName ."','". $body->LastName . "','" . $body->Login . "','" . $body->Password . "');";              
+                }
+                else{
+                    header("HTTP/1.1 500 Server Error");
+                    echo "Invalid request body \n";
+                }
             }
             else{
-                header("HTTP/1.1 500 Server Error");
-                echo "Invalid request body \n";
+
+                if (validate($id, "num") && validate($body->FirstName, "str") && validate($body->LastName, "str") && validate($body->Email, "str") && validate($body->Phone, "str") && validate($body->Address, "str") && validate($body->Status, "str")) {
+                    
+                    $DBquery = "insert into Contacts (userId, FirstName, LastName, Email, Phone, Address, Status)
+                    VALUES ('".$id ."', '".$body->FirstName."', '".$body->LastName."', '".$body->Email."', '".$body->Phone."', '".$body->Address."', '".$body->Status."');";        
+                }
             }
+            $result = (mysqli_query($db, $DBquery) == 1) ? $route . " created successfully" : "Error creating " . $route;
+            echo json_encode($result);
+
         }
 
         else{
-
+            header("HTTP/1.1 500 Server Error");
+            echo "Invalid request body \n 'id' in body required and it has to be an integer";
         }
     }
     function delete(string $route, string $id, $db){
 
-        if(isset($id) && is_numeric($id)){
+        if(validate($id, "num")){
 
             $table = ($route === 'contacts') ? "Contacts" : "Users";
             $tableID = ($route === 'contacts') ? "contactID" : "userID";
 
-            $DBquery = "Delete from " . $table . " where " . $tableID . " = ";
+            $DBquery = "Delete from " . $table . " where " . $tableID . " = " . $id . ";";
+            $result = (mysqli_query($db, $DBquery) == 1) ? $route . " deleted successfully" : "Error creating " . $route;
 
-            $result = mysqli_query($db, $DBquery);
-            $response() = array();
-            sendResponse($response, $result, $route);
+            echo json_encode($result);
 
         }
         else{
@@ -116,17 +125,23 @@
             echo "Invalid request body \n 'id' in body required and it has to be an integer";
         }
     }
-
     function update(string $route, string $id, string $body, $db){
-        if(isset($id) && is_numeric($id)){
-            if (isset($body["FirstName"] && $body["LastName"] && $body["Login"]&& $body["Password"])) {
+    //     if(isset($id) && is_numeric($id)){
+    //         if (isset($body["FirstName"]) && $body["LastName"] && $body["Login"] && $body["Password"]) {
                 
-                $DBquery = "Update Contacts" Set Status='Is Totally Batman' and  where ContactID "=";
+    //             //$DBquery = "Update Contacts Set Status='Is Totally Batman' and  where ContactID "=";
 
-                $result = mysqli_query($db, $DBquery);
-                $response() = array();
-                sendResponse($response, $result, $route);
-            }
-        }
+    //             $result = mysqli_query($db, $DBquery);
+    //             $response() = array();
+    //             sendResponse($response, $result, $route);
+    //         }
+    //     }
     }
+
+    function validate($value, $type){
+        if ($type === "num") return ( isset($value) && is_numeric($value) );
+
+        return isset($value) && $value !== "";
+    }
+
 ?>
