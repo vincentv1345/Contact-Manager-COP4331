@@ -41,18 +41,36 @@
             echo "Invalid request body \n 'id' in body required and it has to be an integer";
         }
     }
-    function getMany(string $route, string $id, $db) {
+    function getOne(string $route, string $id, $db, $body) {
 
-        if(!is_numeric($id)){
-            header("HTTP/1.1 500 Server Error");
-            echo "Invalid request body \n 'id' in body required and it has to be an integer";
+        if(isset($id) && is_numeric($id)){
+            
+            $DBquery = "";
+
+            if ($route === 'Contacts'){
+                if(isset($body->id) && is_numeric($body->id)){
+                    $DBquery = "select * from ". $route . " where userID = " . $body->id . " and contactID = ". $id . ";";
+                }
+                else{
+                    header("HTTP/1.1 500 Server Error");
+                    echo "Invalid request body \n 'id' in body required and it has to be an integer";
+                    return;
+                }
+            }
+            else{
+                $DBquery = "select * from ". $route . " where userID = " . $id . ";";
+            }
+
+            $result = mysqli_query($db, $DBquery);
+            $response = array();
+
+            sendResponse($response, $result, $route);
         }
-        $tableID = ($route === 'users') ? "userID" : "contactID";
-        $DBquery = "Select * from ". $route . " where " . $tableID . " = " . $id . ";";
-        $result = mysqli_query($db, $DBquery);
-        $response = array();
 
-        sendResponse($response, $result, $route);
+        else{
+            header("HTTP/1.1 500 Server Error");
+            echo "Invalid request \n 'id' in URL required and it has to be an integer";
+        }
 
     }
     function create(string $route, string $id, string $body, $db){
