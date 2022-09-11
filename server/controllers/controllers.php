@@ -81,9 +81,34 @@
     }
     function delete(string $route, string $id, $db){
 
-    }
-    function update(string $route, string $id, string $body, $db){
-        
+        if(isset($id) && is_numeric($id)){
+
+            $table = ($route === 'contacts') ? "Contacts" : "Users";
+            $tableID = ($route === 'contacts') ? "contactID" : "userID";
+
+            $DBquery = "Delete from " . $table . " where " . $tableID . " = ";
+
+            $result = mysqli_query($db, $DBquery);
+            $response() = array();
+            sendResponse($response, $result, $route);
+
+        }
+        else{
+            header("HTTP/1.1 500 Server Error");
+            echo "Invalid request body \n 'id' in body required and it has to be an integer";
+        }
     }
 
+    function update(string $route, string $id, string $body, $db){
+        if(isset($id) && is_numeric($id)){
+            if (isset($body["FirstName"] && $body["LastName"] && $body["Login"]&& $body["Password"])) {
+                
+                $DBquery = "Update Contacts" Set Status='Is Totally Batman' and  where ContactID "=";
+
+                $result = mysqli_query($db, $DBquery);
+                $response() = array();
+                sendResponse($response, $result, $route);
+            }
+        }
+    }
 ?>
