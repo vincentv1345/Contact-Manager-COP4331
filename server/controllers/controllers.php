@@ -9,10 +9,10 @@
             while($row = mysqli_fetch_assoc($result)) {
 
                 if($route === "Contacts"){
-                    array_push($response, getContactModel($row["FirstName"], $row["LastName"], $row["Email"], $row["Phone"], $row["Address"], $row["Status"]));
+                    array_push($response, getContactModel($row["userID"], $row["contactID"], $row["FirstName"], $row["LastName"], $row["Email"], $row["Phone"], $row["Address"], $row["Status"], $row["DateCreated"]));
                 }
                 else{
-                    array_push($response, getUserModel($row["FirstName"], $row["LastName"], $row["Login"], $row["Password"]));
+                    array_push($response, getUserModel($row["userID"], $row["FirstName"], $row["LastName"], $row["Login"], $row["Password"], $row["DateCreated"], $row["DateLastLoggedIn"]));
                 }
 
             }
@@ -97,7 +97,8 @@
                     VALUES ('".$id ."', '".$body->FirstName."', '".$body->LastName."', '".$body->Email."', '".$body->Phone."', '".$body->Address."', '".$body->Status."');";        
                 }
             }
-            $result = (mysqli_query($db, $DBquery) == 1) ? $route . " created successfully" : "Error creating " . $route;
+            mysqli_query($db, $DBquery);
+            $result = (mysqli_affected_rows($db) == 1) ? $route . " created successfully" : "Error creating " . $route;
             echo json_encode($result);
 
         }
@@ -107,15 +108,16 @@
             echo "Invalid request body \n 'id' in body required and it has to be an integer";
         }
     }
-    function delete(string $route, string $id, $db){
+    function delete(string $route, string $id, $body, $db){
 
         if(validate($id, "num")){
 
-            $table = ($route === 'contacts') ? "Contacts" : "Users";
-            $tableID = ($route === 'contacts') ? "contactID" : "userID";
+            $table = ($route === 'Contacts') ? "Contacts" : "Users";
+            $tableID = ($route === 'Contacts') ? "contactID" : "userID";
 
             $DBquery = "Delete from " . $table . " where " . $tableID . " = " . $id . ";";
-            $result = (mysqli_query($db, $DBquery) == 1) ? $route . " deleted successfully" : "Error creating " . $route;
+            mysqli_query($db, $DBquery);
+            $result = (mysqli_affected_rows($db) == 1) ? $route . " deleted successfully" : "Error deleting " . $route;
 
             echo json_encode($result);
 

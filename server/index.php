@@ -46,7 +46,7 @@
                                 break;
 
                             case "DELETE":
-                                delete("Users", $uri[3], $conn);
+                                delete("Users", $uri[3], $body, $conn);
                                 break;
 
                             default:
@@ -82,8 +82,7 @@
                                 break;
 
                             case "DELETE":
-                                //delete("contacts", $body);
-                                echo "delete contact";
+                                delete("Contacts", $uri[3], $body, $conn);
                                 break;
 
                             default:
