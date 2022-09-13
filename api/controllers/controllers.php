@@ -58,7 +58,9 @@
                 }
             }
             else{
-                $DBquery = "select * from ". $route . " where userID = " . $id . ";";
+                if(validate($body->Email, "str") && validate($body->Password, "str")){
+                    $DBquery = "select * from ". $route . " where Login = " . $body->Email . " and Password = " . $body->Password . ";";
+                }
             }
 
             $result = mysqli_query($db, $DBquery);

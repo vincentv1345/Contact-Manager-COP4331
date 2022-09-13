@@ -28,25 +28,22 @@
         $queries = $_SERVER['QUERY_STRING'];
 
         //validate the correct routs for this api
-        if (isset($uri[1]) && $uri[1] === "index.php" && isset($uri[2])){
+        if (isset($uri[1]) && $uri[1] === "index.php" && isset($uri[2]) && $uri[2] === "api"){
                 //users route
-                if($uri[2] === "users"){
-                    if(isset($uri[3]) && $uri[3] !== ""){
+                if($uri[3] === "users"){
+                    if(isset($uri[4]) && $uri[4] !== ""){
                         switch ($method) {
-                            case "GET":
-                                getOne("Users", $uri[3], $body, $conn);
-                                break;
 
                             case "POST":
-                                create("Users", $uri[3], $body, $conn);
+                                create("Users", $uri[4], $body, $conn);
                                 break;
 
                             case "PATCH":
-                                update("Users", $uri[3], $body, $conn);
+                                update("Users", $uri[4], $body, $conn);
                                 break;
 
                             case "DELETE":
-                                delete("Users", $uri[3], $body, $conn);
+                                delete("Users", $uri[4], $body, $conn);
                                 break;
 
                             default:
@@ -56,24 +53,32 @@
                                     "\n Only GET, POST, PATCH, and DELETE methods are allowed for this route";
                                 break;
                         }
-                    }else{
-                            header("HTTP/1.1 404 Not Found");
-                            echo "HTTP/1.1 404 Not Found";
                     }
+                    else{
+                        if($method === "GET"){
+                            getOne("Users", "", $body, $conn);
+                        }
+                        else{
+                            header("HTTP/1.1 404 Not Found");
+                            echo "Invalid method. Only GET is allowed";
+                        }
+
+                    }
+
                 }
                 //contact route
-                else if($uri[2] === "contacts"){
+                else if($uri[3] === "contacts"){
 
                     //contacts/:id  route
-                    if(isset($uri[3]) && $uri[3] !== ""){
+                    if(isset($uri[4]) && $uri[4] !== ""){
 
                         switch ($method) {
                             case "GET":
-                                getOne("Contacts", $uri[3], $body, $conn);
+                                getOne("Contacts", $uri[4], $body, $conn);
                                 break;
 
                             case "POST":
-                                create("Contacts", $uri[3], $body, $conn);
+                                create("Contacts", $uri[4], $body, $conn);
                                 break;
 
                             case "PATCH":
@@ -82,7 +87,7 @@
                                 break;
 
                             case "DELETE":
-                                delete("Contacts", $uri[3], $body, $conn);
+                                delete("Contacts", $uri[4], $body, $conn);
                                 break;
 
                             default:
