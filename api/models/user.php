@@ -5,7 +5,7 @@
             "FirstName" => $FirstName,
             "LastName" => $LastName ,
             "Email" => $Login ,
-            "Phone" => $Password ,
+            "Password" => $Password ,
             "DateCreated" => $DateCreated,
             "DateLastLoggedIn" => $DateLastLoggedIn
         );

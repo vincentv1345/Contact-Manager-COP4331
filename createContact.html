@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Create Contact</title>
+    <!-- link fonts wanted that are used in css-->
+    <link rel="stylesheet" href="./src/createContact.css">
+</head>
+<body>
+    <div class="container">
+        <form class="form form--hidden" id="createContact">
+            <h1 class="form__title">Create Contact</h1>
+            <div class="for__input-group">
+                <input type="text" class="form__input" autofocus placeholder="First Name">
+                <input type="text" class="form__input" autofocus placeholder="Last Name">
+            </div>
+            <div class="for__input-group">
+                <input type="text" class="form__input" autofocus placeholder="Email Address">
+            </div>
+            <div class="for__input-group">
+                <input type="text" class="form__input" autofocus placeholder="Phone Number">
+                <input type="text" class="form__input" autofocus placeholder="Status">
+            </div>
+            <div class="for__input-group">
+                <input type="text" class="form__input" autofocus placeholder="Address">
+            </div>
+            <p class="from_text">
+                <button class="form__button" type="submit">Create</button>
+            </p>
+            <p class="from_text">
+                <a class="form__link" href="homePage.html" id="homePage">Return</a>
+            </p>
+        </form>
+    </div>
+    <script src="./src/createContact.js"></script>
+</body>
