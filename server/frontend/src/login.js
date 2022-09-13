@@ -24,9 +24,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loginForm.addEventListener("submit", e => {
         e.preventDefault();
-
-        //ajax login
-
+        //login
         setFormMessage(loginForm, "error", "Incorrect username or password");
+    });
+
+    createAccountForm.addEventListener("submit", e => {
+        e.preventDefault();
+        //create account
+        setFormMessage(createAccountForm, "error", "Please fill every blank");
     });
 });
