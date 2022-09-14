@@ -1,6 +1,6 @@
 <?php
         //import controllers
-        require_once './controllers/controllers.php';
+        require_once '/var/www/html/api/controllers/controllers.php';
 
         //connect to db
         $serverName = "localhost";
@@ -25,10 +25,11 @@
         $body =  json_decode(file_get_contents('php://input'));
 
         //This gets all queries from the url
-        $queries = $_SERVER['QUERY_STRING'];
+        $queries = array();
+        parse_str($_SERVER['QUERY_STRING'], $queries);
 
         //validate the correct routs for this api
-        if (isset($uri[1]) && $uri[1] === "index.php" && isset($uri[2]) && $uri[2] === "api"){
+        if (isset($uri[1]) && $uri[1] === "api" && isset($uri[2]) && $uri[2] === "index.php" && isset($uri[3])){
                 //users route
                 if($uri[3] === "users"){
                     if(isset($uri[4]) && $uri[4] !== ""){
@@ -55,8 +56,9 @@
                         }
                     }
                     else{
+
                         if($method === "GET"){
-                            getOne("Users", "", $body, $conn);
+                            getOne("Users", "", $queries, $conn);
                         }
                         else{
                             header("HTTP/1.1 404 Not Found");
@@ -74,7 +76,7 @@
 
                         switch ($method) {
                             case "GET":
-                                getOne("Contacts", $uri[4], $body, $conn);
+                                getOne("Contacts", $uri[4], $queries, $conn);
                                 break;
 
                             case "POST":

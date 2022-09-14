@@ -1,7 +1,7 @@
 <?php
     //import models
-    require_once "/var/www/html/models/contact.php";
-    require_once "/var/www/html/models/user.php";
+    require_once "/var/www/html/api/models/contact.php";
+    require_once "/var/www/html/api/models/user.php";
 
     function sendResponse($response, $result, $route){
         if (mysqli_num_rows($result) > 0) {
@@ -23,7 +23,7 @@
         }
     }
 
-    function getAll(string $route, $body, string $query, $db) {
+    function getAll(string $route, $body, $query, $db) {
 
         //Validate id from request body
         if(validate($body->id, "num")){
@@ -41,25 +41,36 @@
             echo "Invalid request body \n 'id' in body required and it has to be an integer";
         }
     }
-    function getOne(string $route, string $id, $body, $db) {
-
-        if(validate($id, "num")){
+    function getOne(string $route, string $id, $query, $db) {
             
             $DBquery = "";
 
             if ($route === 'Contacts'){
-                if(validate($body->id, "num")){
-                    $DBquery = "select * from ". $route . " where userID = " . $body->id . " and contactID = ". $id . ";";
+                if(validate($id, "num")){
+                    if(validate($query->id, "num")){
+                        $DBquery = "select * from ". $route . " where userID = " . $query->id . " and contactID = ". $id . ";";
+                    }
+                    else{
+                        header("HTTP/1.1 500 Server Error");
+                        echo "Invalid request uri \n 'id' in queries required and it has to be an integer";
+                        return;
+                    }
                 }
                 else{
                     header("HTTP/1.1 500 Server Error");
-                    echo "Invalid request body \n 'id' in body required and it has to be an integer";
+                    echo "Invalid request \n 'id' in queries required and it has to be an integer";
                     return;
                 }
+
             }
             else{
-                if(validate($body->Email, "str") && validate($body->Password, "str")){
-                    $DBquery = "select * from ". $route . " where Login = " . $body->Email . " and Password = " . $body->Password . ";";
+                if(validate($query->Login, "str") && validate($query->Password, "str")){
+                    $DBquery = "select * from ". $route . " where Login = '" . $query->Login . "' and Password = '" . $query->Password . "';";
+                }
+                else{
+                    header("HTTP/1.1 500 Server Error");
+                    echo "Invalid request uri \n 'Email' and 'Password' in queries required";
+                    return;
                 }
             }
 
@@ -69,12 +80,6 @@
             sendResponse($response, $result, $route);
         }
 
-        else{
-            header("HTTP/1.1 500 Server Error");
-            echo "Invalid request \n 'id' in URL required and it has to be an integer";
-        }
-
-    }
     function create(string $route, string $id, $body, $db){
 
         if(validate($id, "num")){

@@ -4,7 +4,7 @@
             "userID" => $userID,
             "FirstName" => $FirstName,
             "LastName" => $LastName ,
-            "Email" => $Login ,
+            "Login" => $Login ,
             "Password" => $Password ,
             "DateCreated" => $DateCreated,
             "DateLastLoggedIn" => $DateLastLoggedIn
