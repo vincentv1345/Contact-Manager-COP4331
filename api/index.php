@@ -107,7 +107,7 @@
                         //The method only should be contact
                         if($method === "GET"){
                             try {
-                                getAll('Contacts', $body, $queries, $conn);
+                                getAll('Contacts', $queries, $conn);
                             } catch (\Throwable $th) {
                                 echo $th;
                             }

@@ -23,12 +23,12 @@
         }
     }
 
-    function getAll(string $route, $body, $query, $db) {
+    function getAll(string $route, $query, $db) {
 
         //Validate id from request body
-        if(validate($body->id, "num")){
+        if(validate($query["id"], "num")){
 
-            $DBquery = "Select * from ". $route . " where userID = " . $body->id . ";";
+            $DBquery = "Select * from ". $route . " where userID = " . $query['id'] . ";";
             $result = mysqli_query($db, $DBquery);
             $response = array();
 
@@ -38,7 +38,7 @@
 
         else{
             header("HTTP/1.1 500 Server Error");
-            echo "Invalid request body \n 'id' in body required and it has to be an integer";
+            echo "Invalid request uri \n 'id' in uri required and it has to be an integer";
         }
     }
     function getOne(string $route, string $id, $query, $db) {
@@ -47,8 +47,8 @@
 
             if ($route === 'Contacts'){
                 if(validate($id, "num")){
-                    if(validate($query->id, "num")){
-                        $DBquery = "select * from ". $route . " where userID = " . $query->id . " and contactID = ". $id . ";";
+                    if(validate($query["id"], "num")){
+                        $DBquery = "select * from ". $route . " where userID = " . $query["id"] . " and contactID = ". $id . ";";
                     }
                     else{
                         header("HTTP/1.1 500 Server Error");
@@ -64,12 +64,12 @@
 
             }
             else{
-                if(validate($query->Login, "str") && validate($query->Password, "str")){
-                    $DBquery = "select * from ". $route . " where Login = '" . $query->Login . "' and Password = '" . $query->Password . "';";
+                if(validate($query['Login'], "str") && validate($query['Password'], "str")){
+                    $DBquery = "select * from ". $route . " where Login = '" . $query['Login'] . "' and Password = '" . $query['Password'] . "';";
                 }
                 else{
                     header("HTTP/1.1 500 Server Error");
-                    echo "Invalid request uri \n 'Email' and 'Password' in queries required";
+                    echo "Invalid request uri \n 'Login' and 'Password' in queries required";
                     return;
                 }
             }
