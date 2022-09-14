@@ -1,16 +1,85 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8">
-    <title>Contact Dashboard</title>
-    <!-- link fonts wanted that are used in css-->
-    <link rel="stylesheet" href="./src/homePage.css">
+    <link href="css/output.css" rel="stylesheet">
+    <title>Contact Plus | Home</title>
 </head>
 <body>
-    <div class="container">
-        <form class="form" id="contacts">
-
-        </form>
+    <div class="relative w-full">
+        <header class="flex justify-between px-10 py-5">
+            <h1 class="text-2xl font-semibold">
+                Contact Plus
+            </h1>
+            <a
+                href="index.html"
+                class="rounded-lg bg-indigo-600 py-2 px-3 text-white text-sm font-medium cursor-pointer hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+                Log out
+            </a>
+        </header>
+        <hr className='bg-black w-[80%] absolute left-1/2 translate-x-[-50%]'/>
     </div>
-    <script src="./src/homePage.js"></script>
+
+    <main class="flex w-full h-full">
+        <section class="bg-[#f3f4f6] w-[30%] h-full px-5">
+            <div class="flex justify-between items-center py-5">
+                <input 
+                    type="text" 
+                    placeholder="Search Contact"
+                    class="w-[80%] h-10 rounded-lg pl-5 bg-white border-[0.1rem] border-gray-600 border-solid"
+                >
+                <button>
+                    <img src="assets/plus-svgrepo-com.svg" alt="add contact" class="w-8 h-8 " title="Add Contact">
+                </button>
+            </div>
+            <ul id="contact-list" class="overflow-y-scroll max-h-[69vh]">
+                
+            </ul>
+
+        </section>
+        <section class="w-[70%] h-[15rem]">
+            <div class=" bg-indigo-600 h-[50%] w-full"></div>
+            <div class="relative h-full w-full">
+                <img 
+                    id="contact-img"
+                    src="https://as1.ftcdn.net/v2/jpg/03/53/11/00/1000_F_353110097_nbpmfn9iHlxef4EDIhXB1tdTD0lcWhG9.jpg"
+                    class="w-24 h-24 rounded-[50%] absolute top-[-45%] left-20"
+                >
+                <div class="flex mt-16 text-2xl font-medium text-center justify-center">
+                    <h1 id="name"  class="pr-3">
+                        Choose Contact
+                    </h1>
+                    <h1 id="last"></h1>
+                </div>
+                <div class="mt-5">
+                    <div class="flex justify-between px-24">
+                        <div class="my-5">
+                            <p class="text-gray-600">Phone</p>
+                            <p id="phone"></p>
+                        </div>
+                        <div class="my-5">
+                            <p class="text-gray-600">Email</p>
+                            <p id="email"></p>
+                        </div>
+                    </div>
+                    <div class="flex justify-between px-24">
+                        <div class="my-5">
+                            <p class="text-gray-600">Address</p>
+                            <p id="address"></p>
+                        </div>
+                        <div class="my-5">
+                            <p class="text-gray-600">Status</p>
+                            <p id="status"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <script src="js/homePage.js"></script>
 </body>
+</html>
