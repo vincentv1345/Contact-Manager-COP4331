@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/output.css" rel="stylesheet">
-    <title>Contact Plus | Home</title>
+    <link href="../css/output.css" rel="stylesheet">
+    <title>Contacts Plus | Home</title>
 </head>
 <body>
     <div class="relative w-full">
         <header class="flex justify-between px-10 py-5">
             <h1 class="text-2xl font-semibold">
-                Contact Plus
+                Contacts Plus
             </h1>
             <a
-                href="index.html"
+                href="../index.html"
                 class="rounded-lg bg-indigo-600 py-2 px-3 text-white text-sm font-medium cursor-pointer hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
                 Log out
@@ -31,9 +31,9 @@
                     placeholder="Search Contact"
                     class="w-[80%] h-10 rounded-lg pl-5 bg-white border-[0.1rem] border-gray-600 border-solid"
                 >
-                <button>
-                    <img src="assets/plus-svgrepo-com.svg" alt="add contact" class="w-8 h-8 " title="Add Contact">
-                </button>
+                <a href="./createContact.html">
+                    <img src="../assets/plus-svgrepo-com.svg" alt="add contact" class="w-8 h-8 " title="Add Contact">
+                </a>
             </div>
             <ul id="contact-list" class="overflow-y-scroll max-h-[69vh]">
                 
@@ -80,6 +80,6 @@
         </section>
 
     </main>
-    <script src="js/homePage.js"></script>
+    <script src="./src/homePage.js"></script>
 </body>
 </html>
