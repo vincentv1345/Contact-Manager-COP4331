@@ -7,13 +7,17 @@ function signUp(){
     document.getElementById("signupResult").innerHTML = "";
 
     let tmp = {Login:login, Password:password, FirstName:firstName, LastName:lastName};
-
+    
 
     fetch("http://159.223.173.36/api/index.php/users", {
         method: "POST",
         body:tmp
     })
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data =>{
+            if (data === "Users created successfully") {
+                window.location.replace("http://contactsplus.xyz/%22");
+            }
+        })
         .catch(e => console.log(e));
     }
