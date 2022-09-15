@@ -19,7 +19,7 @@
             echo json_encode($response);
         } 
         else {
-            echo json_encode("0 results");
+            echo json_encode(array());
         }
     }
 
