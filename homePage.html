@@ -41,7 +41,22 @@
 
         </section>
         <section class="w-[70%] h-[15rem]">
-            <div class=" bg-indigo-600 h-[50%] w-full"></div>
+            <div class=" bg-indigo-600 h-[50%] w-full">
+                <div class="">
+                    <button
+                    id="delete"
+                    class="absolute left-[93%] bottom-[75%] rounded-lg bg-red-600 py-2 px-3 text-white text-sm font-medium cursor-pointer hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                    >
+                    Delete
+                    </button>
+                    <button
+                    id="edit"
+                    class="absolute left-[88%] bottom-[75%] rounded-lg bg-white py-2 px-4 text-indigo-600 text-sm font-medium cursor-pointer hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
+                    >
+                    Edit
+                    </button>
+                </div>
+            </div>
             <div class="relative h-full w-full">
                 <img 
                     id="contact-img"
@@ -60,7 +75,7 @@
                             <p class="text-gray-600">Phone</p>
                             <p id="phone"></p>
                         </div>
-                        <div class="my-5">
+                        <div class="my-5 absolute left-[70%]">
                             <p class="text-gray-600">Email</p>
                             <p id="email"></p>
                         </div>
@@ -70,7 +85,7 @@
                             <p class="text-gray-600">Address</p>
                             <p id="address"></p>
                         </div>
-                        <div class="my-5">
+                        <div class="my-5 absolute left-[70%]">
                             <p class="text-gray-600">Status</p>
                             <p id="status"></p>
                         </div>
@@ -80,6 +95,6 @@
         </section>
 
     </main>
-    <script src="./src/homePage.js"></script>
+    <script src="./homePage.js"></script>
 </body>
 </html>
