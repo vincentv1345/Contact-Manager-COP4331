@@ -35,10 +35,6 @@
                     if(isset($uri[4]) && $uri[4] !== ""){
                         switch ($method) {
 
-                            case "POST":
-                                create("Users", $uri[4], $body, $conn);
-                                break;
-
                             case "PATCH":
                                 update("Users", $uri[4], $body, $conn);
                                 break;
@@ -59,6 +55,9 @@
 
                         if($method === "GET"){
                             getOne("Users", "", $queries, $conn);
+                        }
+                        else if($method === "POST"){
+                            create("Users", 1, $body, $conn);
                         }
                         else{
                             header("HTTP/1.1 404 Not Found");
