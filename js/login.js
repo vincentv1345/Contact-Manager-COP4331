@@ -5,22 +5,12 @@ submit.addEventListener("click", (e) => {
 
     e.preventDefault();
 
-    const emailAddress = document.getElementById("email-address").value;
+    const username = document.getElementById("user-login").value;
     const password = document.getElementById("password").value;
-    console.log(emailAddress, password)
+    console.log(username, password)
 
-    fetch("http://159.223.173.36/api/index.php/users", {
-
-            method: 'GET',
-            body: JSON.stringify({
-                "Login": "sofBey123",
-                "Password": "Password1"
-            }),
-            headers: new Headers({
-              'Content-Type': 'application/json; charset=UTF-8'
-            })
-    })
-    .then((response) => response.json())
-    .then((data) => console.log(data));
+    fetch(`http://159.223.173.36/api/index.php/users?Login=${username}&Password${password}`)
+      .then((response) => response.json())
+      .then((data) => console.log(data));
     
 })
