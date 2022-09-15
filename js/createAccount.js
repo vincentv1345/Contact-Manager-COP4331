@@ -1,5 +1,8 @@
 
-function signUp(){
+document.addEventListener("click", (e) => {
+
+    e.preventDefault();
+
     firstName = document.getElementById("first-name").value;
     lastName = document.getElementById("last-name").value;
     login = document.getElementById("user-login").value;
@@ -16,8 +19,8 @@ function signUp(){
         .then(response => response.json())
         .then(data =>{
             if (data === "Users created successfully") {
-                window.location.replace("http://contactsplus.xyz/%22");
+                window.location.replace("http://contactsplus.xyz");
             }
         })
         .catch(e => console.log(e));
-    }
+})
