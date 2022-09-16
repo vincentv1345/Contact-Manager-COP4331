@@ -1,5 +1,5 @@
 
-document.addEventListener("click", (e) => {
+document.querySelector("#create-user").addEventListener("click", (e) => {
 
     e.preventDefault();
 
@@ -11,10 +11,9 @@ document.addEventListener("click", (e) => {
 
     let tmp = {Login:login, Password:password, FirstName:firstName, LastName:lastName};
     
-
     fetch("http://159.223.173.36/api/index.php/users", {
         method: "POST",
-        body:tmp
+        body: JSON.stringify(tmp)
     })
         .then(response => response.json())
         .then(data =>{
