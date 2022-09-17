@@ -114,6 +114,11 @@
                     $DBquery = "insert into Contacts (userId, FirstName, LastName, Email, Phone, Address, Status)
                     VALUES ('".$id ."', '".$body->FirstName."', '".$body->LastName."', '".$body->Email."', '".$body->Phone."', '".$body->Address."', '".$body->Status."');";        
                 }
+                else{
+                    header("HTTP/1.1 500 Server Error");
+                    echo "Invalid request body \n";
+                    return;
+                }
             }
             mysqli_query($db, $DBquery);
             $result = (mysqli_affected_rows($db) == 1) ? $route . " created successfully" : "Error creating " . $route;
