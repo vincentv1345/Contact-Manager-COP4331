@@ -61,8 +61,7 @@
                                 break;
 
                             case "PATCH":
-                                //update("contacts", $body);
-                                echo "Update contact";
+                                update("Contacts", $uri[4], $body, $conn);
                                 break;
 
                             case "DELETE":

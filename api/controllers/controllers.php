@@ -146,17 +146,36 @@
         }
     }
     function update(string $route, $id, $body, $db){
-        if($route == "Contacts" && validate($id, "num")){
-            $DBquery = "Update Contacts Set Status=" ;
-            foreach ($body as $value) {
-                $DBquery += $body->$value ;
-            }
-            $DBquery += "where ContactID =" .$id .";"; 
-            $result = mysqli_query($db, $DBquery);
+            
+        if(validate($id, "num")){
 
-        }else{
-        header("HTTP/1.1 500 Server Error");
-        echo "Invalid request body \n 'id' in body required and it has to be an integer";
+            $DBquery = "Update Contacts Set" ;
+            $body = get_object_vars($body);
+            $keys = array_keys($body);
+
+            if(count($keys) === 0){
+                echo "empty body";
+                return;
+            }
+            
+            for($i = 0; $i < count($keys); $i++){
+                if($i === count($keys) - 1) {
+                    $DBquery = $DBquery . " " . $keys[$i] . " = '" . $body[$keys[$i]] . "'";
+                }
+                else{
+                    $DBquery = $DBquery . " " . $keys[$i] . " = '" . $body[$keys[$i]] . "', ";
+                }
+                
+            }
+            $DBquery = $DBquery . " where contactID = " .$id .";"; 
+            mysqli_query($db, $DBquery);
+            $result = (mysqli_affected_rows($db) == 1) ? $route . " updated successfully" : "Error updating " . $route;
+            echo json_encode($result);
+
+        }
+        else{
+            header("HTTP/1.1 500 Server Error");
+            echo "Invalid request uri \n 'id' in uri required and it has to be an integer";
         }
     }
 
