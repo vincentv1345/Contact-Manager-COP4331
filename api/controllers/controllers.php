@@ -26,9 +26,19 @@
     function getAll(string $route, $query, $db) {
 
         //Validate id from request body
-        if(validate($query["id"], "num")){
+        if(validate($query["id"], "num") && validate($query["page"], "num")){
 
-            $DBquery = "Select * from ". $route . " where userID = " . $query['id'] . ";";
+            if($query["page"] < 1){
+                header("HTTP/1.1 500 Server Error");
+                echo "Invalid request uri \n ''page' in uri cannot be less then 1";
+                return;
+            }
+
+            $skip = 10;
+            $start = (intval($query["page"]) === 1 ) ? 0 : (intval($query["page"]) - 1) * $skip;
+            $stop = ($start === 0) ? $skip : $start + $skip;
+
+            $DBquery = "Select * from ". $route . " where userID = " . $query['id'] . " limit " . $start . "," . $stop .";";
             $result = mysqli_query($db, $DBquery);
             $response = array();
 
@@ -38,7 +48,7 @@
 
         else{
             header("HTTP/1.1 500 Server Error");
-            echo "Invalid request uri \n 'id' in uri required and it has to be an integer";
+            echo "Invalid request uri \n 'id' and 'page' in uri required and they have to be integers";
         }
     }
     function getOne(string $route, string $id, $query, $db) {
@@ -135,17 +145,19 @@
             echo "Invalid request body \n 'id' in body required and it has to be an integer";
         }
     }
-    function update(string $route, string $id, string $body, $db){
-    //     if(isset($id) && is_numeric($id)){
-    //         if (isset($body["FirstName"]) && $body["LastName"] && $body["Login"] && $body["Password"]) {
-                
-    //             //$DBquery = "Update Contacts Set Status='Is Totally Batman' and  where ContactID "=";
+    function update(string $route, $id, $body, $db){
+        if($route == "Contacts" && validate($id, "num")){
+            $DBquery = "Update Contacts Set Status=" ;
+            foreach ($body as $value) {
+                $DBquery += $body->$value ;
+            }
+            $DBquery += "where ContactID =" .$id .";"; 
+            $result = mysqli_query($db, $DBquery);
 
-    //             $result = mysqli_query($db, $DBquery);
-    //             $response() = array();
-    //             sendResponse($response, $result, $route);
-    //         }
-    //     }
+        }else{
+        header("HTTP/1.1 500 Server Error");
+        echo "Invalid request body \n 'id' in body required and it has to be an integer";
+        }
     }
 
     function validate($value, $type){

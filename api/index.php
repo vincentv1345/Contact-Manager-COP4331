@@ -32,38 +32,16 @@
         if (isset($uri[1]) && $uri[1] === "api" && isset($uri[2]) && $uri[2] === "index.php" && isset($uri[3])){
                 //users route
                 if($uri[3] === "users"){
-                    if(isset($uri[4]) && $uri[4] !== ""){
-                        switch ($method) {
 
-                            case "PATCH":
-                                update("Users", $uri[4], $body, $conn);
-                                break;
-
-                            case "DELETE":
-                                delete("Users", $uri[4], $body, $conn);
-                                break;
-
-                            default:
-                                header("HTTP/1.1 500 Server Error");
-                                echo 
-                                    "Invalid request method " . $method . 
-                                    "\n Only GET, POST, PATCH, and DELETE methods are allowed for this route";
-                                break;
-                        }
+                    if($method === "GET"){
+                        getOne("Users", "", $queries, $conn);
+                    }
+                    else if($method === "POST"){
+                        create("Users", 1, $body, $conn);
                     }
                     else{
-
-                        if($method === "GET"){
-                            getOne("Users", "", $queries, $conn);
-                        }
-                        else if($method === "POST"){
-                            create("Users", 1, $body, $conn);
-                        }
-                        else{
-                            header("HTTP/1.1 404 Not Found");
-                            echo "Invalid method. Only GET is allowed";
-                        }
-
+                        header("HTTP/1.1 404 Not Found");
+                        echo "Invalid method. Only GET is allowed";
                     }
 
                 }
