@@ -267,6 +267,7 @@
 
 let contactList = [];
 let page = 1;
+let currentContactID = "";
 
 fetch(`http://159.223.173.36/api/index.php/contacts?id=${localStorage.getItem('userID')}&page=${page}`)
   .then(response => response.json())
@@ -307,6 +308,8 @@ const list = document.getElementById("contact-list");
 
 function getContact(e){
   const id = e.lastElementChild.innerHTML;
+  currentContactID = id;
+  console.log(currentContactID)
   
   const contactData = contactList.filter(c => c.contactID == id)[0];
 
@@ -335,14 +338,16 @@ Delete.addEventListener("click", (e) => {
 
     e.preventDefault();
 
-    fetch("http://159.223.173.36/api/index.php/contacts/{id}", {
+    fetch(`http://159.223.173.36/api/index.php/contacts/${currentContactID}`, {
         method: "DELETE",
-        body: JSON.stringify(contactData)
+        headers: {
+          'Content-Type': 'application/json'
+        }
     })
         .then(response => response.json())
         .then(data =>{
             if (data === "Contact deleted successfully") {
-                window.location.replace("http://contactsplus.xyz/homePage");
+                window.location.replace("http://contactsplus.xyz/homePage.index");
             }
         })
         .catch(e => console.log(e));
@@ -354,15 +359,57 @@ Edit.addEventListener("click", (e) => {
 
   e.preventDefault();
 
-  fetch("http://159.223.173.36/api/index.php/contacts/{id}", {
+  fetch(`http://159.223.173.36/api/index.php/contacts/${currentContactID}`, {
       method: "PATCH",
       body: JSON.stringify(contactData)
   })
       .then(response => response.json())
       .then(data =>{
           if (data === "Contact updated successfully") {
-              window.location.replace("http://contactsplus.xyz/homePage");
+              window.location.replace("http://contactsplus.xyz/homePage.index");
           }
       })
       .catch(e => console.log(e));
+})
+
+const searchbar = document.getElementById("search-bar");
+
+searchbar.addEventListener("keyup", (e) =>{
+
+  e.preventDefault();
+  list.innerHTML = '';
+
+  fetch(`http://159.223.173.36/api/index.php/contacts?id=${localStorage.getItem('userID')}&page=${page}`)
+  .then(response => response.json())
+  .then(data => {
+    contactList = data;
+    const listItems = data.map( (element) => {
+
+      return (
+      `<div onclick="getContact(this)">
+          <li class='flex cursor-pointer hover:bg-white'">
+              <img
+                  class="w-10 h-10 rounded-[50%] my-5 mx-3"
+                  src=${profilePic}
+              /> 
+              <div class='my-5'>
+                  <div class='flex max-w-[50%]'>
+                      <p class="pr-2">${element.FirstName}</p>
+                      <p>${element.LastName}</p>
+                  </div>
+                  <p class="text-gray-600">
+                      ${element.Status}
+                  </p>
+              </div>
+          </li>
+          
+          <hr class= 'bg-gray-300'>
+          <p id='id' class='hidden'>${element.contactID}</p>
+      </div>
+      `
+      )
+    });
+    list.innerHTML = listItems.join("");
+  })
+  .catch(e => console.log(e))
 })

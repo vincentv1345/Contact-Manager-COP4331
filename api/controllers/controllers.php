@@ -152,6 +152,7 @@
             mysqli_query($db, $DBquery);
             $result = (mysqli_affected_rows($db) == 1) ? $route . " deleted successfully" : "Error deleting " . $route;
 
+            header("HTTP/1.1 200 OK");
             echo json_encode($result);
 
         }
@@ -185,6 +186,7 @@
             $DBquery = $DBquery . " where contactID = " .$id .";"; 
             mysqli_query($db, $DBquery);
             $result = (mysqli_affected_rows($db) == 1) ? $route . " updated successfully" : "Error updating " . $route;
+            header("HTTP/1.1 200 OK");
             echo json_encode($result);
 
         }
