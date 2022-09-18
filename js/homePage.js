@@ -265,7 +265,8 @@ const contactList = [
     }
 ]
 
-//const profilePic = "https://thumbs.dreamstime.com/z/extreme-close-up-red-green-tree-frog-right-profile-cr-extreme-close-up-red-green-tree-frog-right-profile-189835719.jpg";
+let contactList = fetch("http://159.223.173.36/api/index.php/contacts", {method: "GET",})
+
 const profilePic = "https://as1.ftcdn.net/v2/jpg/03/53/11/00/1000_F_353110097_nbpmfn9iHlxef4EDIhXB1tdTD0lcWhG9.jpg"
 const list = document.getElementById("contact-list");
 
@@ -312,10 +313,26 @@ Delete.addEventListener("click", (e) => {
         .catch(e => console.log(e));
 })
 
+const Edit = document.getElementById("edit")
+
+Edit.addEventListener("click", (e) => {
+
+  e.preventDefault();
+
+  fetch("http://159.223.173.36/api/index.php/contacts/{id}", {
+      method: "PATCH",
+      body: JSON.stringify(contactData)
+  })
+      .then(response => response.json())
+      .then(data =>{
+          if (data === "Contact updated successfully") {
+              window.location.replace("http://contactsplus.xyz/homePage");
+          }
+      })
+      .catch(e => console.log(e));
+})
 
 const listItems = contactList.map( (element) => {
-
-  //document.addEventListener('click', getContact){}
 
   return (
   `<div onclick="getContact(this)">
