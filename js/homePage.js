@@ -293,6 +293,26 @@ function getContact(e){
   address.innerHTML = contactData.Address;
 }
 
+const Delete = document.getElementById("delete");
+
+Delete.addEventListener("click", (e) => {
+
+    e.preventDefault();
+
+    fetch("http://159.223.173.36/api/index.php/contacts/{id}", {
+        method: "DELETE",
+        body: JSON.stringify(contactData)
+    })
+        .then(response => response.json())
+        .then(data =>{
+            if (data === "Contact deleted successfully") {
+                window.location.replace("http://contactsplus.xyz/homePage");
+            }
+        })
+        .catch(e => console.log(e));
+})
+
+
 const listItems = contactList.map( (element) => {
 
   //document.addEventListener('click', getContact){}
