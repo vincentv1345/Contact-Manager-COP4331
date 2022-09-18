@@ -10,18 +10,19 @@ document.querySelector("#create-contact").addEventListener("click", (e) => {
     Status = document.getElementById("Status").value;
     address = document.getElementById("Address").value;
 
-    document.getElementById("contactResult").innerHTML = "";
-
     let tmp = {FirstName:firstName, LastName:lastName, Email:email, Phone:phoneNumber, Address:address, Status:Status, };
     
-    fetch("http://159.223.173.36/api/index.php/contacts/{id}", {
+    fetch(`http://159.223.173.36/api/index.php/contacts/${localStorage.getItem('userID')}`, {
         method: "POST",
         body: JSON.stringify(tmp)
     })
         .then(response => response.json())
         .then(data =>{
-            if (data === "Contact created successfully") {
-                window.location.replace("http://contactsplus.xyz/homePage");
+            if (data === "Contacts created successfully") {
+                window.location.replace("http://contactsplus.xyz/homePage.html");
+            }
+            else{
+                console.log(data)
             }
         })
         .catch(e => console.log(e));
