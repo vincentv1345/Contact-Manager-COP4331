@@ -14,8 +14,7 @@ document.querySelector("#create-contact").addEventListener("click", (e) => {
 
     let tmp = {FirstName:firstName, LastName:lastName, Email:email, Phone:phoneNumber, Address:address, Status:Status, };
     
-    // missing address
-    fetch("", {
+    fetch("http://159.223.173.36/api/index.php/contacts", {
         method: "POST",
         body: JSON.stringify(tmp)
     })
