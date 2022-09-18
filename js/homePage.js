@@ -1,271 +1,277 @@
-const contactList = [
-  {
-      "userID": "2",
-      "contactID": "4",
-      "FirstName": "Real",
-      "LastName": "Person",
-      "Email": "anemail@gmail.com",
-      "Phone": "123-456-7890",
-      "Address": "Mars",
-      "Status": "Human",
-      "DateCreated": "2022-08-30 20:29:33"
-    },
-    {
-      "userID": "2",
-      "contactID": "6",
-      "FirstName": "Bruce",
-      "LastName": "Wayne",
-      "Email": "Bruce_wayne@waynetech.com",
-      "Phone": "148-782-3789",
-      "Address": "Wayne Manor, Gotham",
-      "Status": "Is Totally Batman",
-      "DateCreated": "2022-09-07 22:13:25"
-    },
-    {
-      "userID": "2",
-      "contactID": "7",
-      "FirstName": "Clark",
-      "LastName": "Kent",
-      "Email": "Clark_Kent@dailyplanet.com",
-      "Phone": "893-836-9362",
-      "Address": "Daily Planet Metropolis",
-      "Status": "Not Superman",
-      "DateCreated": "2022-09-07 22:16:29"
-    },
-    {
-      "userID": "1",
-      "contactID": "1",
-      "FirstName": "Harry",
-      "LastName": "Potter",
-      "Email": "harrypotter@gmail.wiz",
-      "Phone": "999-123-4567",
-      "Address": "7 Magical Ave, London",
-      "Status": "Friend",
-      "DateCreated": "2022-08-30 20:29:27"
-    },
-    {
-      "userID": "1",
-      "contactID": "2",
-      "FirstName": "Thomas",
-      "LastName": "Riddle",
-      "Email": "triddle@gmail.wiz",
-      "Phone": "666-123-4567",
-      "Address": "79 Evil Ave, London",
-      "Status": "Enemy",
-      "DateCreated": "2022-08-30 20:29:27"
-    },
-    {
-      "userID": "1",
-      "contactID": "3",
-      "FirstName": "Margot",
-      "LastName": "Robbie",
-      "Email": "margotrobbie@barbie.com",
-      "Phone": "332-445-6759",
-      "Address": "42 Sherman Wallaby Way",
-      "Status": "Friend",
-      "DateCreated": "2022-08-30 20:29:28"
-    },
-    {
-      "userID": "2",
-      "contactID": "4",
-      "FirstName": "Real",
-      "LastName": "Person",
-      "Email": "anemail@gmail.com",
-      "Phone": "123-456-7890",
-      "Address": "Mars",
-      "Status": "Human",
-      "DateCreated": "2022-08-30 20:29:33"
-    },
-    {
-      "userID": "2",
-      "contactID": "6",
-      "FirstName": "Bruce",
-      "LastName": "Wayne",
-      "Email": "Bruce_wayne@waynetech.com",
-      "Phone": "148-782-3789",
-      "Address": "Wayne Manor, Gotham",
-      "Status": "Is Totally Batman",
-      "DateCreated": "2022-09-07 22:13:25"
-    },
-    {
-      "userID": "2",
-      "contactID": "7",
-      "FirstName": "Clark",
-      "LastName": "Kent",
-      "Email": "Clark_Kent@dailyplanet.com",
-      "Phone": "893-836-9362",
-      "Address": "Daily Planet Metropolis",
-      "Status": "Not Superman",
-      "DateCreated": "2022-09-07 22:16:29"
-    },
-    {
-      "userID": "1",
-      "contactID": "1",
-      "FirstName": "Harry",
-      "LastName": "Potter",
-      "Email": "harrypotter@gmail.wiz",
-      "Phone": "999-123-4567",
-      "Address": "7 Magical Ave, London",
-      "Status": "Friend",
-      "DateCreated": "2022-08-30 20:29:27"
-    },
-    {
-      "userID": "1",
-      "contactID": "2",
-      "FirstName": "Thomas",
-      "LastName": "Riddle",
-      "Email": "triddle@gmail.wiz",
-      "Phone": "666-123-4567",
-      "Address": "79 Evil Ave, London",
-      "Status": "Enemy",
-      "DateCreated": "2022-08-30 20:29:27"
-    },
-    {
-      "userID": "1",
-      "contactID": "3",
-      "FirstName": "Margot",
-      "LastName": "Robbie",
-      "Email": "margotrobbie@barbie.com",
-      "Phone": "332-445-6759",
-      "Address": "42 Sherman Wallaby Way",
-      "Status": "Friend",
-      "DateCreated": "2022-08-30 20:29:28"
-    },
-    {
-      "userID": "2",
-      "contactID": "4",
-      "FirstName": "Real",
-      "LastName": "Person",
-      "Email": "anemail@gmail.com",
-      "Phone": "123-456-7890",
-      "Address": "Mars",
-      "Status": "Human",
-      "DateCreated": "2022-08-30 20:29:33"
-    },
-    {
-      "userID": "2",
-      "contactID": "6",
-      "FirstName": "Bruce",
-      "LastName": "Wayne",
-      "Email": "Bruce_wayne@waynetech.com",
-      "Phone": "148-782-3789",
-      "Address": "Wayne Manor, Gotham",
-      "Status": "Is Totally Batman",
-      "DateCreated": "2022-09-07 22:13:25"
-    },
-    {
-      "userID": "2",
-      "contactID": "7",
-      "FirstName": "Clark",
-      "LastName": "Kent",
-      "Email": "Clark_Kent@dailyplanet.com",
-      "Phone": "893-836-9362",
-      "Address": "Daily Planet Metropolis",
-      "Status": "Not Superman",
-      "DateCreated": "2022-09-07 22:16:29"
-    },
-    {
-      "userID": "1",
-      "contactID": "1",
-      "FirstName": "Harry",
-      "LastName": "Potter",
-      "Email": "harrypotter@gmail.wiz",
-      "Phone": "999-123-4567",
-      "Address": "7 Magical Ave, London",
-      "Status": "Friend",
-      "DateCreated": "2022-08-30 20:29:27"
-    },
-    {
-      "userID": "1",
-      "contactID": "2",
-      "FirstName": "Thomas",
-      "LastName": "Riddle",
-      "Email": "triddle@gmail.wiz",
-      "Phone": "666-123-4567",
-      "Address": "79 Evil Ave, London",
-      "Status": "Enemy",
-      "DateCreated": "2022-08-30 20:29:27"
-    },
-    {
-      "userID": "1",
-      "contactID": "3",
-      "FirstName": "Margot",
-      "LastName": "Robbie",
-      "Email": "margotrobbie@barbie.com",
-      "Phone": "332-445-6759",
-      "Address": "42 Sherman Wallaby Way",
-      "Status": "Friend",
-      "DateCreated": "2022-08-30 20:29:28"
-    },
-    {
-      "userID": "2",
-      "contactID": "4",
-      "FirstName": "Real",
-      "LastName": "Person",
-      "Email": "anemail@gmail.com",
-      "Phone": "123-456-7890",
-      "Address": "Mars",
-      "Status": "Human",
-      "DateCreated": "2022-08-30 20:29:33"
-    },
-    {
-      "userID": "2",
-      "contactID": "6",
-      "FirstName": "Bruce",
-      "LastName": "Wayne",
-      "Email": "Bruce_wayne@waynetech.com",
-      "Phone": "148-782-3789",
-      "Address": "Wayne Manor, Gotham",
-      "Status": "Is Totally Batman",
-      "DateCreated": "2022-09-07 22:13:25"
-    },
-    {
-      "userID": "2",
-      "contactID": "7",
-      "FirstName": "Clark",
-      "LastName": "Kent",
-      "Email": "Clark_Kent@dailyplanet.com",
-      "Phone": "893-836-9362",
-      "Address": "Daily Planet Metropolis",
-      "Status": "Not Superman",
-      "DateCreated": "2022-09-07 22:16:29"
-    },
-    {
-      "userID": "1",
-      "contactID": "1",
-      "FirstName": "Harry",
-      "LastName": "Potter",
-      "Email": "harrypotter@gmail.wiz",
-      "Phone": "999-123-4567",
-      "Address": "7 Magical Ave, London",
-      "Status": "Friend",
-      "DateCreated": "2022-08-30 20:29:27"
-    },
-    {
-      "userID": "1",
-      "contactID": "2",
-      "FirstName": "Thomas",
-      "LastName": "Riddle",
-      "Email": "triddle@gmail.wiz",
-      "Phone": "666-123-4567",
-      "Address": "79 Evil Ave, London",
-      "Status": "Enemy",
-      "DateCreated": "2022-08-30 20:29:27"
-    },
-    {
-      "userID": "1",
-      "contactID": "3",
-      "FirstName": "Margot",
-      "LastName": "Robbie",
-      "Email": "margotrobbie@barbie.com",
-      "Phone": "332-445-6759",
-      "Address": "42 Sherman Wallaby Way",
-      "Status": "Friend",
-      "DateCreated": "2022-08-30 20:29:28"
-    }
-]
+// const contactList = [
+//   {
+//       "userID": "2",
+//       "contactID": "4",
+//       "FirstName": "Real",
+//       "LastName": "Person",
+//       "Email": "anemail@gmail.com",
+//       "Phone": "123-456-7890",
+//       "Address": "Mars",
+//       "Status": "Human",
+//       "DateCreated": "2022-08-30 20:29:33"
+//     },
+//     {
+//       "userID": "2",
+//       "contactID": "6",
+//       "FirstName": "Bruce",
+//       "LastName": "Wayne",
+//       "Email": "Bruce_wayne@waynetech.com",
+//       "Phone": "148-782-3789",
+//       "Address": "Wayne Manor, Gotham",
+//       "Status": "Is Totally Batman",
+//       "DateCreated": "2022-09-07 22:13:25"
+//     },
+//     {
+//       "userID": "2",
+//       "contactID": "7",
+//       "FirstName": "Clark",
+//       "LastName": "Kent",
+//       "Email": "Clark_Kent@dailyplanet.com",
+//       "Phone": "893-836-9362",
+//       "Address": "Daily Planet Metropolis",
+//       "Status": "Not Superman",
+//       "DateCreated": "2022-09-07 22:16:29"
+//     },
+//     {
+//       "userID": "1",
+//       "contactID": "1",
+//       "FirstName": "Harry",
+//       "LastName": "Potter",
+//       "Email": "harrypotter@gmail.wiz",
+//       "Phone": "999-123-4567",
+//       "Address": "7 Magical Ave, London",
+//       "Status": "Friend",
+//       "DateCreated": "2022-08-30 20:29:27"
+//     },
+//     {
+//       "userID": "1",
+//       "contactID": "2",
+//       "FirstName": "Thomas",
+//       "LastName": "Riddle",
+//       "Email": "triddle@gmail.wiz",
+//       "Phone": "666-123-4567",
+//       "Address": "79 Evil Ave, London",
+//       "Status": "Enemy",
+//       "DateCreated": "2022-08-30 20:29:27"
+//     },
+//     {
+//       "userID": "1",
+//       "contactID": "3",
+//       "FirstName": "Margot",
+//       "LastName": "Robbie",
+//       "Email": "margotrobbie@barbie.com",
+//       "Phone": "332-445-6759",
+//       "Address": "42 Sherman Wallaby Way",
+//       "Status": "Friend",
+//       "DateCreated": "2022-08-30 20:29:28"
+//     },
+//     {
+//       "userID": "2",
+//       "contactID": "4",
+//       "FirstName": "Real",
+//       "LastName": "Person",
+//       "Email": "anemail@gmail.com",
+//       "Phone": "123-456-7890",
+//       "Address": "Mars",
+//       "Status": "Human",
+//       "DateCreated": "2022-08-30 20:29:33"
+//     },
+//     {
+//       "userID": "2",
+//       "contactID": "6",
+//       "FirstName": "Bruce",
+//       "LastName": "Wayne",
+//       "Email": "Bruce_wayne@waynetech.com",
+//       "Phone": "148-782-3789",
+//       "Address": "Wayne Manor, Gotham",
+//       "Status": "Is Totally Batman",
+//       "DateCreated": "2022-09-07 22:13:25"
+//     },
+//     {
+//       "userID": "2",
+//       "contactID": "7",
+//       "FirstName": "Clark",
+//       "LastName": "Kent",
+//       "Email": "Clark_Kent@dailyplanet.com",
+//       "Phone": "893-836-9362",
+//       "Address": "Daily Planet Metropolis",
+//       "Status": "Not Superman",
+//       "DateCreated": "2022-09-07 22:16:29"
+//     },
+//     {
+//       "userID": "1",
+//       "contactID": "1",
+//       "FirstName": "Harry",
+//       "LastName": "Potter",
+//       "Email": "harrypotter@gmail.wiz",
+//       "Phone": "999-123-4567",
+//       "Address": "7 Magical Ave, London",
+//       "Status": "Friend",
+//       "DateCreated": "2022-08-30 20:29:27"
+//     },
+//     {
+//       "userID": "1",
+//       "contactID": "2",
+//       "FirstName": "Thomas",
+//       "LastName": "Riddle",
+//       "Email": "triddle@gmail.wiz",
+//       "Phone": "666-123-4567",
+//       "Address": "79 Evil Ave, London",
+//       "Status": "Enemy",
+//       "DateCreated": "2022-08-30 20:29:27"
+//     },
+//     {
+//       "userID": "1",
+//       "contactID": "3",
+//       "FirstName": "Margot",
+//       "LastName": "Robbie",
+//       "Email": "margotrobbie@barbie.com",
+//       "Phone": "332-445-6759",
+//       "Address": "42 Sherman Wallaby Way",
+//       "Status": "Friend",
+//       "DateCreated": "2022-08-30 20:29:28"
+//     },
+//     {
+//       "userID": "2",
+//       "contactID": "4",
+//       "FirstName": "Real",
+//       "LastName": "Person",
+//       "Email": "anemail@gmail.com",
+//       "Phone": "123-456-7890",
+//       "Address": "Mars",
+//       "Status": "Human",
+//       "DateCreated": "2022-08-30 20:29:33"
+//     },
+//     {
+//       "userID": "2",
+//       "contactID": "6",
+//       "FirstName": "Bruce",
+//       "LastName": "Wayne",
+//       "Email": "Bruce_wayne@waynetech.com",
+//       "Phone": "148-782-3789",
+//       "Address": "Wayne Manor, Gotham",
+//       "Status": "Is Totally Batman",
+//       "DateCreated": "2022-09-07 22:13:25"
+//     },
+//     {
+//       "userID": "2",
+//       "contactID": "7",
+//       "FirstName": "Clark",
+//       "LastName": "Kent",
+//       "Email": "Clark_Kent@dailyplanet.com",
+//       "Phone": "893-836-9362",
+//       "Address": "Daily Planet Metropolis",
+//       "Status": "Not Superman",
+//       "DateCreated": "2022-09-07 22:16:29"
+//     },
+//     {
+//       "userID": "1",
+//       "contactID": "1",
+//       "FirstName": "Harry",
+//       "LastName": "Potter",
+//       "Email": "harrypotter@gmail.wiz",
+//       "Phone": "999-123-4567",
+//       "Address": "7 Magical Ave, London",
+//       "Status": "Friend",
+//       "DateCreated": "2022-08-30 20:29:27"
+//     },
+//     {
+//       "userID": "1",
+//       "contactID": "2",
+//       "FirstName": "Thomas",
+//       "LastName": "Riddle",
+//       "Email": "triddle@gmail.wiz",
+//       "Phone": "666-123-4567",
+//       "Address": "79 Evil Ave, London",
+//       "Status": "Enemy",
+//       "DateCreated": "2022-08-30 20:29:27"
+//     },
+//     {
+//       "userID": "1",
+//       "contactID": "3",
+//       "FirstName": "Margot",
+//       "LastName": "Robbie",
+//       "Email": "margotrobbie@barbie.com",
+//       "Phone": "332-445-6759",
+//       "Address": "42 Sherman Wallaby Way",
+//       "Status": "Friend",
+//       "DateCreated": "2022-08-30 20:29:28"
+//     },
+//     {
+//       "userID": "2",
+//       "contactID": "4",
+//       "FirstName": "Real",
+//       "LastName": "Person",
+//       "Email": "anemail@gmail.com",
+//       "Phone": "123-456-7890",
+//       "Address": "Mars",
+//       "Status": "Human",
+//       "DateCreated": "2022-08-30 20:29:33"
+//     },
+//     {
+//       "userID": "2",
+//       "contactID": "6",
+//       "FirstName": "Bruce",
+//       "LastName": "Wayne",
+//       "Email": "Bruce_wayne@waynetech.com",
+//       "Phone": "148-782-3789",
+//       "Address": "Wayne Manor, Gotham",
+//       "Status": "Is Totally Batman",
+//       "DateCreated": "2022-09-07 22:13:25"
+//     },
+//     {
+//       "userID": "2",
+//       "contactID": "7",
+//       "FirstName": "Clark",
+//       "LastName": "Kent",
+//       "Email": "Clark_Kent@dailyplanet.com",
+//       "Phone": "893-836-9362",
+//       "Address": "Daily Planet Metropolis",
+//       "Status": "Not Superman",
+//       "DateCreated": "2022-09-07 22:16:29"
+//     },
+//     {
+//       "userID": "1",
+//       "contactID": "1",
+//       "FirstName": "Harry",
+//       "LastName": "Potter",
+//       "Email": "harrypotter@gmail.wiz",
+//       "Phone": "999-123-4567",
+//       "Address": "7 Magical Ave, London",
+//       "Status": "Friend",
+//       "DateCreated": "2022-08-30 20:29:27"
+//     },
+//     {
+//       "userID": "1",
+//       "contactID": "2",
+//       "FirstName": "Thomas",
+//       "LastName": "Riddle",
+//       "Email": "triddle@gmail.wiz",
+//       "Phone": "666-123-4567",
+//       "Address": "79 Evil Ave, London",
+//       "Status": "Enemy",
+//       "DateCreated": "2022-08-30 20:29:27"
+//     },
+//     {
+//       "userID": "1",
+//       "contactID": "3",
+//       "FirstName": "Margot",
+//       "LastName": "Robbie",
+//       "Email": "margotrobbie@barbie.com",
+//       "Phone": "332-445-6759",
+//       "Address": "42 Sherman Wallaby Way",
+//       "Status": "Friend",
+//       "DateCreated": "2022-08-30 20:29:28"
+//     }
+// ]
 
-let contactList = fetch("http://159.223.173.36/api/index.php/contacts", {method: "GET",})
+let contactList;
+
+let page = 1;
+
+fetch(`http://159.223.173.36/api/index.php/contacts?userID=${user.userID}$page=${page}`)
+  .then(response => response.json())
+  .then(data => console.log(data))
 
 const profilePic = "https://as1.ftcdn.net/v2/jpg/03/53/11/00/1000_F_353110097_nbpmfn9iHlxef4EDIhXB1tdTD0lcWhG9.jpg"
 const list = document.getElementById("contact-list");
