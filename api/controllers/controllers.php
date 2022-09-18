@@ -38,7 +38,17 @@
             $start = (intval($query["page"]) === 1 ) ? 0 : (intval($query["page"]) - 1) * $skip;
             $stop = ($start === 0) ? $skip : $start + $skip;
 
-            $DBquery = "Select * from ". $route . " where userID = " . $query['id'] . " limit " . $start . "," . $stop .";";
+            $DBquery = "Select * from ". $route . " where userID = " . $query['id'] ;
+
+            if(validate($query['FirstName'], "str")){
+                $DBquery = $DBquery . " and FirstName regexp '" . $query['FirstName'] . "'";
+            }
+
+            if(validate($query['LastName'], "str")){
+                $DBquery = $DBquery . " and LastName regexp '" . $query['LastName'] . "'";
+            }
+
+            $DBquery = $DBquery . " limit " . $start . "," . $stop .";";
             $result = mysqli_query($db, $DBquery);
             $response = array();
 
