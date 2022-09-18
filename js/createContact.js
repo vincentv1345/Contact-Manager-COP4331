@@ -1,3 +1,4 @@
+
 document.querySelector("#create-contact").addEventListener("click", (e) => {
 
     e.preventDefault();
@@ -8,13 +9,13 @@ document.querySelector("#create-contact").addEventListener("click", (e) => {
     phoneNumber = document.getElementById("phone-number").value;
     Status = document.getElementById("Status").value;
     address = document.getElementById("Address").value;
-    document.getElementById("ContactResult").innerHTML = "";
 
-    // add correct names from database
-    let tmp = {:firstName, :lastName, :email, :phoneNumber, :Status, :address};
+    document.getElementById("contactResult").innerHTML = "";
+
+    let tmp = {FirstName:firstName, LastName:lastName, Email:email, Phone:phoneNumber, Address:address, Status:Status, };
     
-    // change endpoint to correct one once received
-    fetch(/*"http://159.223.173.36/api/index.php/users*/", {
+    // missing address
+    fetch("", {
         method: "POST",
         body: JSON.stringify(tmp)
     })
