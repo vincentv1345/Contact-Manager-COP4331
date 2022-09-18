@@ -265,13 +265,42 @@
 //     }
 // ]
 
-let contactList;
-
+let contactList = [];
 let page = 1;
 
-fetch(`http://159.223.173.36/api/index.php/contacts?userID=${user.userID}$page=${page}`)
+fetch(`http://159.223.173.36/api/index.php/contacts?id=${localStorage.getItem('userID')}&page=${page}`)
   .then(response => response.json())
-  .then(data => console.log(data))
+  .then(data => {
+    contactList = data;
+    const listItems = data.map( (element) => {
+
+      return (
+      `<div onclick="getContact(this)">
+          <li class='flex cursor-pointer hover:bg-white'">
+              <img
+                  class="w-10 h-10 rounded-[50%] my-5 mx-3"
+                  src=${profilePic}
+              /> 
+              <div class='my-5'>
+                  <div class='flex max-w-[50%]'>
+                      <p class="pr-2">${element.FirstName}</p>
+                      <p>${element.LastName}</p>
+                  </div>
+                  <p class="text-gray-600">
+                      ${element.Status}
+                  </p>
+              </div>
+          </li>
+          
+          <hr class= 'bg-gray-300'>
+          <p id='id' class='hidden'>${element.contactID}</p>
+      </div>
+      `
+      )
+    });
+    list.innerHTML = listItems.join("");
+  })
+  .catch(e => console.log(e))
 
 const profilePic = "https://as1.ftcdn.net/v2/jpg/03/53/11/00/1000_F_353110097_nbpmfn9iHlxef4EDIhXB1tdTD0lcWhG9.jpg"
 const list = document.getElementById("contact-list");
@@ -337,31 +366,3 @@ Edit.addEventListener("click", (e) => {
       })
       .catch(e => console.log(e));
 })
-
-const listItems = contactList.map( (element) => {
-
-  return (
-  `<div onclick="getContact(this)">
-      <li class='flex cursor-pointer hover:bg-white'">
-          <img
-              class="w-10 h-10 rounded-[50%] my-5 mx-3"
-              src=${profilePic}
-          /> 
-          <div class='my-5'>
-              <div class='flex max-w-[50%]'>
-                  <p class="pr-2">${element.FirstName}</p>
-                  <p>${element.LastName}</p>
-              </div>
-              <p class="text-gray-600">
-                  ${element.Status}
-              </p>
-          </div>
-      </li>
-      
-      <hr class= 'bg-gray-300'>
-      <p id='id' class='hidden'>${element.contactID}</p>
-  </div>
-  `
-  )
-});
-list.innerHTML = listItems.join("");

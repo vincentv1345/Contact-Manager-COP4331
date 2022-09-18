@@ -21,6 +21,7 @@ submit.addEventListener("click", (e) => {
     .then((response) => response.json())
     .then((data) => {
       if(data.length > 0){
+        console.log(data)
         localStorage.setItem('userID', data[0].userID);
         localStorage.setItem('FirstName', data[0].FirstName)
         window.location.replace("http://contactsplus.xyz/homePage.html");
