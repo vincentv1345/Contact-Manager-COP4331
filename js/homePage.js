@@ -383,10 +383,10 @@ done.addEventListener("click", (e) => {
 
   const FirstName = document.getElementById("name").innerHTML;
   const LastName = document.getElementById("last").innerHTML;
-  const Status = document.getElementById("status").innerHTML;
-  const Email = document.getElementById("email").innerHTML;
-  const Phone = document.getElementById("phone").innerHTML;
-  const Address = document.getElementById("address").innerHTML;
+  const Status = document.getElementById("status").innerText;
+  const Email = document.getElementById("email").innerText;
+  const Phone = document.getElementById("phone").innerText;
+  const Address = document.getElementById("address").innerText;
 
   const contactData = {FirstName, LastName, Status, Email, Phone, Address};
   console.log(contactData)
