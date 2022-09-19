@@ -338,7 +338,7 @@ Delete.addEventListener("click", (e) => {
 
     e.preventDefault();
 
-    fetch(`http://159.223.173.36/api/index.php/contacts/${currentContactID}`, {
+    fetch(`/api/index.php/contacts/${currentContactID}`, {
         method: "DELETE",
         headers: {
           'Content-Type': 'application/json'
@@ -346,8 +346,9 @@ Delete.addEventListener("click", (e) => {
     })
         .then(response => response.json())
         .then(data =>{
-            if (data === "Contact deleted successfully") {
-                window.location.replace("http://contactsplus.xyz/homePage.index");
+          console.log(data)
+            if (data === "Contacts deleted successfully") {
+                window.location.replace("http://contactsplus.xyz/homePage.html");
             }
         })
         .catch(e => console.log(e));
@@ -359,30 +360,76 @@ Edit.addEventListener("click", (e) => {
 
   e.preventDefault();
 
-  fetch(`http://159.223.173.36/api/index.php/contacts/${currentContactID}`, {
+  let firstname = document.getElementById("name");
+  let lastname = document.getElementById("last");
+  let Status = document.getElementById("status");
+  let Email = document.getElementById("email");
+  let Phone = document.getElementById("phone");
+  let Address = document.getElementById("address");
+
+  firstname.contentEditable = true;
+  lastname.contentEditable = true;
+  Phone.contentEditable = true;
+  Email.contentEditable = true;
+  Status.contentEditable = true;
+  Address.contentEditable = true;
+
+})
+
+const done = document.getElementById('done');
+done.addEventListener("click", (e) => {
+
+  e.preventDefault();
+
+  const FirstName = document.getElementById("name").innerHTML;
+  const LastName = document.getElementById("last").innerHTML;
+  const Status = document.getElementById("status").innerHTML;
+  const Email = document.getElementById("email").innerHTML;
+  const Phone = document.getElementById("phone").innerHTML;
+  const Address = document.getElementById("address").innerHTML;
+
+  const contactData = {FirstName, LastName, Status, Email, Phone, Address};
+  console.log(contactData)
+
+
+  fetch(`/api/index.php/contacts/${currentContactID}`, {
       method: "PATCH",
       body: JSON.stringify(contactData)
   })
       .then(response => response.json())
       .then(data =>{
-          if (data === "Contact updated successfully") {
-              window.location.replace("http://contactsplus.xyz/homePage.index");
+          if (data === "Contacts updated successfully") {
+            window.location.replace("http://contactsplus.xyz/homePage.html");
           }
       })
       .catch(e => console.log(e));
+
 })
 
-const searchbar = document.getElementById("search-bar");
+let searchbar = document.getElementById("search-bar");
 
 searchbar.addEventListener("keyup", (e) =>{
 
   e.preventDefault();
   list.innerHTML = '';
+  let uri = `http://159.223.173.36/api/index.php/contacts?id=${localStorage.getItem('userID')}&page=${page}`;
 
-  fetch(`http://159.223.173.36/api/index.php/contacts?id=${localStorage.getItem('userID')}&page=${page}`)
+  const values = document.getElementById("search-bar").value.split(" ");
+  console.log(values)
+  const firstName = values[0];
+  const lastName = values[1];
+
+  if(firstName !== undefined && firstName !== ""){
+    uri += `&FirstName=${firstName}`;
+  }
+
+  if(lastName !== undefined && lastName !== ""){
+    uri += `&LastName=${values[1]}`;
+  }
+
+  fetch(uri)
   .then(response => response.json())
   .then(data => {
-    contactList = data;
     const listItems = data.map( (element) => {
 
       return (
